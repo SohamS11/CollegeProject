@@ -1,7 +1,7 @@
-
-import './App.css'
-import Header from './component/Header';
-import Home from './routes/Home';
+import "./App.css";
+import Header from "./component/Header";
+import { useState } from "react";
+import NavigateRoute from "./routes/NavigateRoute";
 // import FeaturesSection from './component/FeaturesSection';
 // import Hero_Section from './component/Hero_Section';
 // import { Routes, Rout} from 'react-router-dom';
@@ -10,17 +10,16 @@ import Home from './routes/Home';
 // import Department from './routes/Department';
 // import RoadmapDropdown from './routes/RoadmapDropdown';
 // import Hero_Section from './component/Hero_Section';
-import { useState } from 'react';
-
 
 function App() {
-   const[active, setActiveRoute] = useState('home')
+  const [active, setActiveRoute] = useState("home");
 
   return (
     <div>
-     <Header />
-    </div>  
-  )
+      <Header />
+      <NavigateRoute/>
+    </div>
+  );
 }
 
 export default App;

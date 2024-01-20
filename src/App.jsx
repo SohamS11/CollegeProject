@@ -1,27 +1,26 @@
 
 import './App.css'
 import Header from './component/Header';
-import FeaturesSection from './component/FeaturesSection';
-import { Routes, Route} from 'react-router-dom';
-import AboutUs from './routes/AboutUs';
-import ContactUs from './routes/ContactUs';
-import Department from './routes/Department';
+import Home from './routes/Home';
+// import FeaturesSection from './component/FeaturesSection';
+// import Hero_Section from './component/Hero_Section';
+// import { Routes, Rout} from 'react-router-dom';
+// import AboutUs from './routes/AboutUs';
+// import ContactUs from './routes/ContactUs';
+// import Department from './routes/Department';
+// import RoadmapDropdown from './routes/RoadmapDropdown';
+// import Hero_Section from './component/Hero_Section';
+import { useState } from 'react';
 
 
 function App() {
-  
+   const[active, setActiveRoute] = useState('home')
 
   return (
-       <div>
-      <Header />
-      <FeaturesSection />
-      <Routes>
-             <Route path='/about' element={<AboutUs/>}/>
-             <Route path='/contact' element={<ContactUs/>}/>
-             <Route path='/department' element={<Department/>}/>
-      </Routes>
-    </div>
+    <div>
+     <Header />
+    </div>  
   )
 }
 
-export default App
+export default App;

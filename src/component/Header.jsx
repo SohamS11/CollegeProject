@@ -1,15 +1,26 @@
 // src/components/Header.jsx
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import Home from '../routes/Home';
+import AboutUs from '../routes/AboutUs';
+import {  Routes, Route } from 'react-router-dom';
+import ContactUs from '../routes/ContactUs';
+import Department from '../routes/Department';
+import RoadmapDropdown from '../routes/RoadmapDropdown';
 
 
 const Header = () => {
-  
-  const marginTopValue = '0px';
+
+  const navigate = useNavigate();
+
+  const handleNavigation =(route)=>{
+    navigate(route)
+  }
   return (
-    <header className="text-black relative h-[480px] bg-cover bg-center p-4" style={{ backgroundImage: 'url("./src/images/collegeBackground.jpg")', marginTop: marginTopValue}}>
-      <div className="p-4 container mx-auto  flex items-center justify-between  max-w-[1280px]">
-        <div className="flex items-center mx-auto">
+    <header className="text-black ">
+      <div className="container mx-auto  flex items-center justify-between max-w-[1180px] ml-60 mt-5">
+        <div className="flex items-center">
           
           <div className="font-bold text-xl">My College</div>
         </div>
@@ -22,33 +33,34 @@ const Header = () => {
             
           </div>
           <div className="text-black text-center mx-auto">
-        <nav className="space-x-8 mx-auto flex items-center justify-between p-4">
+        <nav className="space-x-4">
 
         <ul className="flex space-x-4">
+        <li>
+            <button onClick={() => handleNavigation('/')} className="hover:text-gray-300">Home</button>
+          </li>
+          <li>
+            <button onClick={() => handleNavigation('/about')} className="hover:text-gray-300">About</button>
+          </li>
+          <li>
+            <button onClick={() => handleNavigation('/contact')} className="hover:text-gray-300">Contact</button>
+          </li>
+          <li>
+            <button onClick={() => handleNavigation('/department')} className="hover:text-gray-300">department</button>
+          </li>
         
-          <li>
-            <Link to="/about">About Us</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact Us</Link>
-          </li>
-          <li>
-            <Link to="/department">Departments</Link>
-          </li>
         </ul>
           
         </nav>
         </div>
-        
         </div>
-        <div className="flex items-center justify-start h-full mt-10 pb-10 ml-36">
-        <div className="text-white text-left p-8">
-          <h1 className="text-4xl font-bold mb-4">Welcome to My College</h1>
-          <p className="text-lg mb-8">Discover a world of knowledge and opportunities.</p>
-          <button className="bg-blue-500 text-white px-8 py-4 rounded-full hover:bg-blue-700">Apply Now</button>
-        </div>
-      </div>
-        
+        <Routes>
+             <Route path='/' element={<Home />} />
+             <Route path='/about' element={<AboutUs/>}/>
+             <Route path='/contact' element={<ContactUs/>}/>
+             <Route path='/department' element={<Department/>}/>
+             <Route path="/allroadmap/*" element={<RoadmapDropdown />} />   
+      </Routes>
     </header>
   );
 };

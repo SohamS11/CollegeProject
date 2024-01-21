@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Hero_Section = () => {
   return (
@@ -12,9 +12,8 @@ const Hero_Section = () => {
         </div>
         </div>
       </div>
-        
     </div>
-  )
-}
+  );
+};
 
-export default Hero_Section
+export default Hero_Section;

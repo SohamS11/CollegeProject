@@ -1,6 +1,6 @@
 // src/components/FeaturesSection.jsx
-import React from 'react';
-import { CheckCircle } from 'feather-icons-react'
+import React from "react";
+import { CheckCircle } from "feather-icons-react";
 
 const FeaturesSection = () => {
   return (

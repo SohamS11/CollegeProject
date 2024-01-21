@@ -6,6 +6,8 @@ import ContactUs from "./ContactUs";
 import Department from "./Department";
 import RoadmapDropdown from "./RoadmapDropdown";
 import CollegeComponent from "../component/CollegeComponent";
+import SearchResults from "../component/SearchResults";
+
 
 const NavigateRoute = () => {
   return (
@@ -17,6 +19,7 @@ const NavigateRoute = () => {
         <Route path="/department" element={<Department />} />
         <Route path="/allroadmap/*" element={<RoadmapDropdown />} />
         <Route path="/college" element={<CollegeComponent />} />
+        <Route path="/search/:query" element={<SearchResults/>} />
       </Routes>
     </div>
   );

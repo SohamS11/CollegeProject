@@ -30,6 +30,20 @@
               "name": "Financial Accounting"
             }
           ]
+        },
+        {
+          "id": 3,
+          "name": "Commerce",
+          "courses": [
+            {
+              "id": 301,
+              "name": "Accounting"
+            },
+            {
+              "id": 302,
+              "name": "economics"
+            }
+          ]
         }
       ]
     }

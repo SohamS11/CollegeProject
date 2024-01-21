@@ -7,7 +7,15 @@ import {useState} from 'react';
 
 const Header = () => {
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   const navigate = useNavigate();
+
+  const handlesearch =()=>{
+    if(searchQuery.trim() !== ''){
+      navigate(`/search/${searchQuery}`);
+    }
+  };
 
   const handleNavigation =(route)=>{
     navigate(route)
@@ -23,10 +31,12 @@ const Header = () => {
         <div className="flex items-center ml-40">
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for colleges"
               className= "px-24 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
             />
-            
+            <button onClick={handlesearch}>Search</button>
           </div>
           <div className="text-black text-center mx-auto">
         <nav className="space-x-4">

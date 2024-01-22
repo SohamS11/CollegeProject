@@ -1,6 +1,7 @@
 import React from "react";
 
 const Hero_Section = () => {
+ 
   return (
     <div>
           <div className="bg-cover bg-center h-96 relative" style={{ backgroundImage: 'url("../src/images/collegeBackground.jpg")'}}>

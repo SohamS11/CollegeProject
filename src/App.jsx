@@ -9,16 +9,23 @@ import RoadmapDropdown from "./routes/RoadmapDropdown";
 import { Routes, Route } from "react-router-dom";
 import Header from "./component/Header";
 
+
+
 const App = () => {
+
+  
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header/>
+   
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/department" element={<Department />} />
         <Route path="/allroadmap/*" element={<RoadmapDropdown />} />
+        
         <Route path="*" element={<h1>not found bro </h1>} />
       </Routes>
     </BrowserRouter>

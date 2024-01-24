@@ -78,7 +78,7 @@ const Search = () => {
                   </div>
                 </>
               )}
-              <button className="absolute top-2.5 right-2 font-bold text-black focus:outline-none px-1 py-0.5  cursor-pointer" onClick={()=>handleroute('home')}>
+              <button className="absolute top-2.5 right-2 font-bold text-black focus:outline-none px-1 py-0.5  cursor-pointer" onClick={()=>handleroute('/')}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>

@@ -1,14 +1,15 @@
-import "./App.css";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Header from "./component/Header";
-import Home from "./routes/Home";
-import AboutUs from "./routes/AboutUs";
-import ContactUs from "./routes/ContactUs";
-import Department from "./routes/Department";
-import RoadmapDropdown from "./routes/RoadmapDropdown";
-import Search from "./component/Search";
+import {
+  AboutUs,
+  ContactUs,
+  Home,
+  Search,
+  Department,
+  RoadmapDropdown,
+  CollegeList
+} from "./Routes/ExportRoutes";
 
 const Layout = ({ children }) => (
   <>
@@ -58,6 +59,14 @@ const App = () => {
           element={
             <Layout>
               <RoadmapDropdown />
+            </Layout>
+          }
+        />
+        <Route
+          path="collegeList/:id"
+          element={
+            <Layout>
+              <CollegeList />
             </Layout>
           }
         />

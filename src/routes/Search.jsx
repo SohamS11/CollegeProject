@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Apiurl } from "../Data/Data";
+import { Apiurl } from "../Data/ApiData";
 import { debounce } from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,17 +14,15 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const handleroute=(route)=>{
+  const HandleRoute = (route) => {
     navigate(route);
-  }
+  };
 
   const debouncedSearch = useCallback(
     debounce(async (value) => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          `${Apiurl}search?q=${value}`
-        );
+        const response = await axios.get(`${Apiurl}search?q=${value}`);
         if (response.status === 200 && response.data.output != null) {
           setSearchData(response.data.output);
           setSearchEmpty(!response.data || response.data.output.length === 0);
@@ -61,7 +59,7 @@ const Search = () => {
   return (
     <>
       <div className="flex justify-center items-start  h-screen px-8 py-5">
-        <div className="mt-4 mx-auto w-full px-6 py-4 ">
+        <div className="mt-4 mx-auto w-full h-96 px-6 py-4 ">
           <div className="relative">
             <input
               type="text"
@@ -73,19 +71,26 @@ const Search = () => {
             <div className="flex gap-3">
               {searchQuery && (
                 <>
-                  <div className="absolute top-2 right-8 font-medium text-black focus:outline-none  px-1 py-0.5 rounded-full cursor-pointer text-blue-700">
+                  <div className="absolute top-2 right-8 font-medium focus:outline-none  px-1 py-0.5 rounded-full cursor-pointer text-blue-700">
                     <span onClick={() => setSearchQuery("")}>Clear</span>
                   </div>
                 </>
               )}
-              <button className="absolute top-2.5 right-2 font-bold text-black focus:outline-none px-1 py-0.5  cursor-pointer" onClick={()=>handleroute('/')}>
-                <FontAwesomeIcon icon={faTimes} />
+              <button
+                className="absolute top-2.5 right-2 font-bold text-black focus:outline-none px-1 py-0.5 cursor-pointer"
+                onClick={() => HandleRoute("/")}
+              >
+                <FontAwesomeIcon icon={faTimesCircle}/>
               </button>
             </div>
           </div>
           {showSearch && (
             <>
-              {loading && <p>Loading...</p>}
+              {loading && (
+                <div className="flex justify-center items-center text-black font-medium mt-5">
+                  <p>Loading...</p>
+                </div>
+              )}
               {!loading && searchData.length > 0 && (
                 <div className="overflow-y-auto max-h-96 mt-2 py-2">
                   {searchData.map((result, index) => (
@@ -95,7 +100,12 @@ const Search = () => {
                   ))}
                 </div>
               )}
-              {!loading && searchEmpty && <p>No results found.</p>}
+
+              {!loading && searchEmpty && (
+                <div className="flex justify-center items-center text-black font-medium mt-5">
+                  <p>No results found</p>
+                </div>
+              )}
             </>
           )}
         </div>

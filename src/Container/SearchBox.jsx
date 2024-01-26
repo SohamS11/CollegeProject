@@ -9,7 +9,7 @@ const SearchBox = () => {
   return (
     <div
       className="mt-2 max-w-screen-xl mx-auto px-6"
-      onClick={()=>handleNavigation("Search")}
+      onClick={() => handleNavigation("Search")}
     >
       <input
         type="text"

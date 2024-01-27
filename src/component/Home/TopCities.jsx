@@ -1,6 +1,6 @@
 import React from "react";
-import TopCitiesItem from "../Container/TopCitiesItem";
-import { TopCitiesData } from "../Data/TopCitiesData";
+import TopCitiesItem from "../../Container/Home/TopCitiesItem";
+import { TopCitiesData } from "../../Data/TopCitiesData";
 
 const TopCities = () => {
   return (

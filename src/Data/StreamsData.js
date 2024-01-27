@@ -1,4 +1,4 @@
-const CollegeTypeData = [
+const StreamsData = [
   {
     link: "management-colleges",
     name: "Management",
@@ -127,4 +127,4 @@ const CollegeTypeData = [
   },
 ];
 
-export { CollegeTypeData };
+export { StreamsData };

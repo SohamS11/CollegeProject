@@ -1,6 +1,6 @@
 // src/components/Header.jsx
 import { Link, useNavigate } from "react-router-dom";
-import SearchBox from "../Container/SearchBox";
+import SearchBox from "../../Container/Home/SearchBox";
 
 const Header = () => {
   const navigate = useNavigate();

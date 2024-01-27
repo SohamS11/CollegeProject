@@ -1,9 +1,10 @@
 import React from "react";
-import Hero_Section from "../component/Hero_Section";
-import FeaturesSection from "../component/FeaturesSection";
-import Footer from "../Component/Footer";
-import TopCities from "../component/TopCities";
-import CollegeType from "../Component/CollegeType";
+import Hero_Section from "../component/Home/Hero_Section";
+import FeaturesSection from "../component/Home/FeaturesSection";
+import Footer from "../Component/Home/Footer";
+import TopCities from "../component/Home/TopCities";
+import Streams from "../Component/Home/Streams";
+import TopStreamsCollege from "../Component/Home/TopStreamsCollege";
 
 const Home = () => {
   return (
@@ -11,7 +12,8 @@ const Home = () => {
       <Hero_Section />
       <FeaturesSection />
       <TopCities />
-      <CollegeType />
+      <Streams />
+      <TopStreamsCollege/>
       <Footer />
     </>
   );

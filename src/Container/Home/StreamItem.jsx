@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import Streams from './../../Component/Home/Streams';
 
-const CollegeTypeItem = ({ data }) => {
+const StreamsItem = ({ data }) => {
   const navigate = useNavigate();
   const HandleRoute = (route) => {
     navigate(route);
@@ -26,4 +27,4 @@ const CollegeTypeItem = ({ data }) => {
   );
 };
 
-export default CollegeTypeItem;
+export default StreamsItem;

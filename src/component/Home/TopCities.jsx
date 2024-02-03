@@ -5,8 +5,10 @@ import { TopCitiesData } from "../../Data/TopCitiesData";
 const TopCities = () => {
   return (
     <div>
-      <div className="max-w-screen-lg w-full lg:mx-auto mx-3">
-        <div className="flex overflow-x-auto">
+      <div className="lg:w-[1300px] md:w-[786px] sm:w-[640px] lg:mx-auto  mx-3">
+        <h1 className="font-semibold text-3xl mt-3"> Top Cities </h1>
+        <div className="flex overflow-x-auto mt-0">
+          
           {TopCitiesData.map((item, index) => {
             return <TopCitiesItem data={item} key={index} />;
           })}

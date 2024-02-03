@@ -4,11 +4,13 @@ const Hero_Section = () => {
   return (
     <div>
       <div
-        className="bg-cover bg-center h-96 relative"
+        className="bg-cover bg-center  lg:min-w-[1024px] h-96 relative"
+
         style={{
           backgroundImage: 'url("../src/assets/images/collegeBackground.jpg")',
         }}
       >
+
         <div className="text-white text-left p-8 mt-0 m-20">
           <div className="mt-40">
             <h1 className="text-4xl font-bold mb-4">Welcome to My College</h1>

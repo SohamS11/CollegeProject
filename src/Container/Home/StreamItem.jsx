@@ -20,6 +20,7 @@ const StreamsItem = ({ data }) => {
           <h1 className="text-md font-medium justify-start flex">
             {data.name}
           </h1>
+          
           <span className="text-sm font-light">{data.number}</span>
         </div>
       </div>

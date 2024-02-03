@@ -11,7 +11,7 @@ const FeaturesSection = () => {
           {/* Feature 1 */}
           <div className="flex items-center mb-4 mr-8">
             <div className="bg-blue-500 rounded-full p-4 mr-4">
-              {/* Replace with your feature icon */}
+              
               <CheckCircle className="text-white" size={24} />
             </div>
             <div>
@@ -23,7 +23,7 @@ const FeaturesSection = () => {
           {/* Feature 2 */}
           <div className="flex items-center mb-4 mr-8">
             <div className="bg-blue-500 rounded-full p-4 mr-4">
-              {/* Replace with your feature icon */}
+              
               <CheckCircle className="text-white" size={24} />
             </div>
             <div>
@@ -35,7 +35,7 @@ const FeaturesSection = () => {
           {/* Feature 3 */}
           <div className="flex items-center mb-4">
             <div className="bg-blue-500 rounded-full p-4 mr-4">
-              {/* Replace with your feature icon */}
+          
               <CheckCircle className="text-white" size={24} />
             </div>
             <div>
@@ -43,9 +43,10 @@ const FeaturesSection = () => {
               <p className="text-gray-600">set time table for exam</p>
             </div>
           </div>
+          {/* feature 4 */}
           <div className="flex items-center mb-4">
             <div className="bg-blue-500 rounded-full p-4 mr-4">
-              {/* Replace with your feature icon */}
+            
               <CheckCircle className="text-white" size={24} />
             </div>
             <div>

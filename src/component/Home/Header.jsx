@@ -1,5 +1,5 @@
 // src/components/Header.jsx
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import SearchBox from "../../Container/Home/SearchBox";
 
 const Header = () => {
@@ -7,17 +7,27 @@ const Header = () => {
   const handleNavigation = (route) => {
     navigate(route);
   };
+
   return (
-    <header className="text-black shadow-md">
-      <div className="shadow-md pb-5">
-        <div className="container mx-auto flex items-center justify-between max-w-[1180px] ml-60">
+    <header className=" flex justify-center items-center py-2 " > 
+      <div className="w-[1300px]" > 
+        <div className="flex"  >
+ 
           <div className="flex items-center">
-            <div className="font-bold text-xl">MyCollege</div>
+          <NavLink to="/" className="text-black text-2xl font-bold">
+             <h2>MyCollege</h2>
+          </NavLink>
+
+           
           </div>
+
+          {/*search box component call kelay   */}
+
           <SearchBox />
-          <div className="text-black text-center mx-auto">
-            <nav className="space-x-4">
-              <ul className="flex space-x-4">
+
+          
+            <nav className="flex items-center">
+              <ul className=" flex gap-x-4 items-center justify-center ">
                 <li>
                   <button
                     onClick={() => handleNavigation("/")}
@@ -52,7 +62,7 @@ const Header = () => {
                 </li>
               </ul>
             </nav>
-          </div>
+          
         </div>
       </div>
     </header>

@@ -1,5 +1,6 @@
 const TopStreamsCollegeData = {
   3: [
+    // first object
     {
       name: "Hindu College",
       url: "college/161225-hindu-college-new-delhi",
@@ -15,6 +16,7 @@ const TopStreamsCollegeData = {
       },
       approvals: [],
       reviews_count: "0",
+      
       fees: [
         {
           link: "courses-fees?slug=bachelor-of-arts-ba-hons\u0026course_type=Full-Time",
@@ -34,6 +36,11 @@ const TopStreamsCollegeData = {
         },
       ],
     },
+
+      // second object
+
+
+
     {
       name: "St Stephen's College",
       url: "college/164274-st-stephens-college-new-delhi",
@@ -126,6 +133,7 @@ const TopStreamsCollegeData = {
         },
       ],
     },
+    
     {
       name: "Hansraj College - [HRC]",
       url: "college/161180-hansraj-college-hrc-new-delhi",

@@ -63,7 +63,7 @@ const Search = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="Search Colleges"
+              placeholder="Search for colleges, Courses, Exams or Articles..."
               value={searchQuery}
               onChange={handleSearch}
               className="w-full rounded-lg bg-gray-200 text-gray-700 leading-tight focus:outline-none py-3 px-3 pr-20"
@@ -80,7 +80,7 @@ const Search = () => {
                 className="absolute top-2.5 right-2 font-bold text-black focus:outline-none px-1 py-0.5 cursor-pointer"
                 onClick={() => HandleRoute("/")}
               >
-                <FontAwesomeIcon icon={faTimesCircle}/>
+                <FontAwesomeIcon icon={faTimesCircle} />
               </button>
             </div>
           </div>
@@ -92,7 +92,7 @@ const Search = () => {
                 </div>
               )}
               {!loading && searchData.length > 0 && (
-                <div className="overflow-y-auto max-h-96 mt-2 py-2">
+                <div className="overflow-y-auto max-h-[600px] mt-2 py-2">
                   {searchData.map((result, index) => (
                     <>
                       <SearchItem item={result} key={index} />
@@ -115,10 +115,32 @@ const Search = () => {
 };
 
 const SearchItem = ({ item }) => {
+  const navigate = useNavigate();
+  function HandleRoute() {
+    if (item.item_type === "college") {
+      navigate(`/collegedetail/${encodeURIComponent(item.url)}`);
+    } else if (item.item_type === "course") {
+      navigate(`/courses/${encodeURIComponent(item.url)}`);
+    } else if (item.item_type === "exam") {
+      navigate(`/exam/${encodeURIComponent(item.url)}`);
+    } else {
+      navigate(`/collegelist/${encodeURIComponent(item.url)}`);
+    }
+  }
   return (
-    <div className="flex justify-between items-center gap-2 mx-2 py-1">
+    <div
+      className="flex justify-between items-center gap-2 mx-2 py-1 cursor-pointer"
+      onClick={() => HandleRoute()}
+    >
       <div className="flex gap-3 justify-start items-center py-2">
-        <img src={item.logo} className="w-14 h-14" />
+        <img
+          src={
+            item.logo
+              ? item.logo
+              : "https://th.bing.com/th/id/OIP.GnqZiwU7k5f_kRYkw8FNNwHaF3?w=277&h=220&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+          }
+          className="w-14 h-14"
+        />
         <div>
           <h1>{item.name}</h1>
         </div>

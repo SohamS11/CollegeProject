@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
+import { useNavigate } from "react-router-dom";
 
 const CollegeList = () => {
   const { id } = useParams();
@@ -9,6 +10,8 @@ const CollegeList = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
+  const [addtitle, setAddTitle] = useState(true);
+  const [error, setError] = useState(false);
   const containerRef = useRef(null);
   const prevScrollY = useRef(0);
 
@@ -31,7 +34,6 @@ const CollegeList = () => {
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading]); // Listen for scroll events and trigger page number increment when reaching bottom
@@ -40,9 +42,17 @@ const CollegeList = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        Apiurl + "college_list/" + id + "?page=" + pageNumber
+        Apiurl + "college_list/" + encodeURIComponent(id) + "?page=" + pageNumber
       );
-      setTitle(response.data?.leadFormTitle);
+
+      if (response.status != 200) {
+        setCollegeListData([]);
+        setError(true); 
+      }
+      if (addtitle) {
+        setTitle(response.data?.leadFormTitle);
+        setAddTitle(false);
+      }
       setCollegeListData((prevData) => [
         ...prevData,
         ...response.data.colleges,
@@ -52,6 +62,7 @@ const CollegeList = () => {
       console.error("Error fetching data:", error);
       setCollegeListData([]);
       setLoading(false);
+      setError(true);
     }
   };
   return (
@@ -60,19 +71,32 @@ const CollegeList = () => {
       ref={containerRef}
     >
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {collegeListData.map((item, index) => (
-          <CollegeListItem data={item} key={index} />
-        ))}
-      </div>
+      {error ? (
+        <div className="flex justify-center items-center mt-32">
+          <h1 className=" font-semibold">There is problem with api</h1>{" "}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {collegeListData?.map((item, index) => (
+            <CollegeListItem data={item} key={index} />
+          ))}
+        </div>
+      )}
       {loading && <p className="text-center mt-4">Loading...</p>}
     </div>
   );
 };
 
 const CollegeListItem = ({ data }) => {
+  const navigate = useNavigate();
+  function HandleRoute() {
+    navigate(`/collegedetail/${encodeURIComponent(data.url)}`);
+  }
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden  hover:shadow-lg shadow-md">
+    <div
+      className="border border-gray-200 rounded-lg overflow-hidden  hover:shadow-lg shadow-md cursor-pointer"
+      onClick={() => HandleRoute()}
+    >
       <img
         className="w-full h-64 object-cover"
         src={`https://static.zollege.in/${data?.cover}`}
@@ -107,9 +131,6 @@ const CollegeListItem = ({ data }) => {
               </div>
             ))}
           </div>
-          <button className="bg-blue-500 text-white px-2 py-1 rounded-lg">
-            Apply Now
-          </button>
         </div>
         <div>
           <h3 className="font-semibold">

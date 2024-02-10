@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Header from "./component/Home/Header";
 
@@ -11,6 +10,9 @@ import {
   RoadmapDropdown,
   CollegeList
 } from "./Routes/ExportRoutes";
+import CollegeDetail from "./Routes/Collegedetail";
+import Exam from './Routes/Exam';
+import Courses from './Routes/Courses';
 
 const Layout = ({ children }) => (
   <>
@@ -80,6 +82,28 @@ const App = () => {
             </Layout>
           }
         />
+        <Route
+          path="/collegedetail/:id"
+          element={
+            <Layout>
+              <CollegeDetail/>
+            </Layout>
+          }
+        />
+        <Route
+          path="/exam/:id"
+          element={
+            <Layout>
+              <Exam />
+            </Layout>
+          }/>
+        <Route 
+          path="/courses/:id"
+          element={
+            <Layout>
+              <Courses />
+            </Layout>
+          }/>
       </Routes>
     </BrowserRouter>
   );

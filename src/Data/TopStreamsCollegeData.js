@@ -1,6 +1,7 @@
 const TopStreamsCollegeData = {
   3: [
     // first object
+    
     {
       name: "Hindu College",
       url: "college/161225-hindu-college-new-delhi",
@@ -10,7 +11,7 @@ const TopStreamsCollegeData = {
       cover_image: "1492065245cover..png",
       reviews_avg_rating: "",
       rating: {
-        3: "9.99",
+        3: "9.99", 
         5: "9.968",
         18: "10",
       },
@@ -37,10 +38,10 @@ const TopStreamsCollegeData = {
       ],
     },
 
+
+
+
       // second object
-
-
-
     {
       name: "St Stephen's College",
       url: "college/164274-st-stephens-college-new-delhi",
@@ -66,6 +67,12 @@ const TopStreamsCollegeData = {
         },
       ],
     },
+
+
+
+
+
+
     {
       name: "Miranda House",
       url: "college/162325-miranda-house-new-delhi",
@@ -3377,6 +3384,8 @@ const TopStreamsCollegeData = {
     },
   ],
 };
+
+// This is a Top streams data 
 
 const TopSreamsList = [
   {

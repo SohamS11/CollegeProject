@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width: 767px) {
+    .grid-cols-small {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .grid-cols-md {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
+  

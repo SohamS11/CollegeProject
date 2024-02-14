@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
-import { useNavigate } from "react-router-dom";
 
 const CollegeList = () => {
   const { id } = useParams();
@@ -10,28 +10,21 @@ const CollegeList = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
-  const [addtitle, setAddTitle] = useState(true);
   const [error, setError] = useState(false);
+  const [stop, setStop] = useState(true);
   const containerRef = useRef(null);
-  const prevScrollY = useRef(0);
 
   useEffect(() => {
-    fetchData();
+    if (stop) {
+      fetchData();
+    }
   }, [pageNumber]); // Fetch data when page number changes
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY < prevScrollY.current) {
-        // User is scrolling up
-        return;
-      }
-      prevScrollY.current = currentScrollY;
       const { scrollTop, clientHeight, scrollHeight } = containerRef.current;
-      if (scrollHeight - scrollTop <= clientHeight) {
-        if (!loading) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1);
-        }
+      if (scrollHeight - scrollTop <= clientHeight && !loading) {
+        setPageNumber((prevPageNumber) => prevPageNumber + 1);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -42,22 +35,25 @@ const CollegeList = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        Apiurl + "college_list/" + encodeURIComponent(id) + "?page=" + pageNumber
+        `${Apiurl}college_list/${encodeURIComponent(id)}?page=${pageNumber}`
       );
 
-      if (response.status != 200) {
-        setCollegeListData([]);
-        setError(true); 
+      if (response.status !== 200) {
+        setError(true);
+        return;
       }
-      if (addtitle) {
-        setTitle(response.data?.leadFormTitle);
-        setAddTitle(false);
+      if (pageNumber === 0) {
+        setTitle(response.data?.leadFormTitle || "");
       }
-      setCollegeListData((prevData) => [
-        ...prevData,
-        ...response.data.colleges,
-      ]);
-      setLoading(false);
+      if (Array.isArray(response.data.colleges)) {
+        setCollegeListData((prevData) => [
+          ...prevData,
+          ...response.data.colleges,
+        ]);
+      } else {
+        setStop(false);
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       setCollegeListData([]);
@@ -65,6 +61,7 @@ const CollegeList = () => {
       setError(true);
     }
   };
+
   return (
     <div
       className="container mx-auto mt-4 max-w-screen w-full px-4"
@@ -73,11 +70,11 @@ const CollegeList = () => {
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
       {error ? (
         <div className="flex justify-center items-center mt-32">
-          <h1 className=" font-semibold">There is problem with api</h1>{" "}
+          <h1 className="font-semibold">There is a problem with the API</h1>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {collegeListData?.map((item, index) => (
+          {collegeListData.map((item, index) => (
             <CollegeListItem data={item} key={index} />
           ))}
         </div>
@@ -89,13 +86,14 @@ const CollegeList = () => {
 
 const CollegeListItem = ({ data }) => {
   const navigate = useNavigate();
-  function HandleRoute() {
+  const handleRoute = () => {
     navigate(`/collegedetail/${encodeURIComponent(data.url)}`);
-  }
+  };
+
   return (
     <div
-      className="border border-gray-200 rounded-lg overflow-hidden  hover:shadow-lg shadow-md cursor-pointer"
-      onClick={() => HandleRoute()}
+      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer"
+      onClick={handleRoute}
     >
       <img
         className="w-full h-64 object-cover"
@@ -110,7 +108,7 @@ const CollegeListItem = ({ data }) => {
             alt={data?.college_name}
           />
           <div>
-            <h2 className="text-md  font-bold">{data?.college_name}</h2>
+            <h2 className="text-md font-bold">{data?.college_name}</h2>
             <p className="text-sm font-light">
               {data?.college_city}, {data?.state}
               <span>
@@ -134,16 +132,14 @@ const CollegeListItem = ({ data }) => {
         </div>
         <div>
           <h3 className="font-semibold">
-            <div>
-              {data?.rankingData[0] && (
-                <h3 className="font-semibold">
-                  The {data?.rankingData[0]?.agency} ranking{" "}
-                  {data?.rankingData[0]?.rankingofCollege} out of{" "}
-                  {data?.rankingData[0]?.rankingOutOfTotalNoOfCollege} in{" "}
-                  {data?.rankingData[0]?.year}
-                </h3>
-              )}
-            </div>
+            {data?.rankingData[0] && (
+              <div>
+                The {data?.rankingData[0]?.agency} ranking{" "}
+                {data?.rankingData[0]?.rankingofCollege} out of{" "}
+                {data?.rankingData[0]?.rankingOutOfTotalNoOfCollege} in{" "}
+                {data?.rankingData[0]?.year}
+              </div>
+            )}
           </h3>
         </div>
       </div>

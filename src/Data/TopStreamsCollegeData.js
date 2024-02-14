@@ -1,23 +1,23 @@
 const TopStreamsCollegeData = {
   3: [
     // first object
-    
+
     {
       name: "Hindu College",
       url: "college/161225-hindu-college-new-delhi",
       city: "New Delhi",
       state: "Delhi NCR",
       logo: "col1904.jpg",
-      cover_image: "1492065245cover..png",
+      cover_image: "1492065245cover.png",
       reviews_avg_rating: "",
       rating: {
-        3: "9.99", 
+        3: "9.99",
         5: "9.968",
         18: "10",
       },
       approvals: [],
       reviews_count: "0",
-      
+
       fees: [
         {
           link: "courses-fees?slug=bachelor-of-arts-ba-hons\u0026course_type=Full-Time",
@@ -38,10 +38,7 @@ const TopStreamsCollegeData = {
       ],
     },
 
-
-
-
-      // second object
+    // second object
     {
       name: "St Stephen's College",
       url: "college/164274-st-stephens-college-new-delhi",
@@ -67,11 +64,6 @@ const TopStreamsCollegeData = {
         },
       ],
     },
-
-
-
-
-
 
     {
       name: "Miranda House",
@@ -140,7 +132,7 @@ const TopStreamsCollegeData = {
         },
       ],
     },
-    
+
     {
       name: "Hansraj College - [HRC]",
       url: "college/161180-hansraj-college-hrc-new-delhi",
@@ -3385,7 +3377,7 @@ const TopStreamsCollegeData = {
   ],
 };
 
-// This is a Top streams data 
+// This is a Top streams data
 
 const TopSreamsList = [
   {
@@ -3429,4 +3421,4 @@ const TopSreamsList = [
     id: 6,
   },
 ];
-export { TopStreamsCollegeData ,TopSreamsList};
+export { TopStreamsCollegeData, TopSreamsList };

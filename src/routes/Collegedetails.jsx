@@ -29,7 +29,7 @@ const CollegeDetail = () => {
   }, [id]); // Added id as dependency to fetch data when id changes
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:w-[1300px]  md:max-w-[786px] sm:max-w-[640px]">
+    <div className="container mx-auto px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {error && (
         <p className="text-red-500">There was an error fetching the data.</p>
       )}
@@ -213,15 +213,15 @@ const Courses = ({ data }) => {
               </p>
               <p>
                 <span className="font-semibold">Stream:</span>{" "}
-                {course.stream_data.name}
+                {course?.stream_data?.name}
               </p>
               <p>
                 <span className="font-semibold">Ranking Agency:</span>{" "}
-                {course.ranking_data.agency}
+                {course?.ranking_data?.agency}
               </p>
               <p>
                 <span className="font-semibold">Rank:</span>{" "}
-                {course.ranking_data.rank}
+                {course?.ranking_data?.rank}
               </p>
               <a href={course.url} className="text-blue-600 hover:underline">
                 More Info

@@ -1,4 +1,4 @@
-// src/components/Header.jsx
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import SearchBox from "../../Container/Home/SearchBox";
 
@@ -8,22 +8,38 @@ const Header = () => {
     navigate(route);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      if (scrollTop > 70) { // You can adjust this value as needed
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className=" flex justify-center items-center py-2 ">
+    <header className={`flex justify-center bg-white items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'h-[50px] bg-white shadow-md' : 'h-[70px] bg-transparent'}`}>
       <div className="w-[1300px]">
-        <div className="flex">
+        <div className="flex justify-between mb-3">
           <div className="flex items-center">
             <NavLink to="/" className="text-black text-2xl font-bold">
               <h2>MyCollege</h2>
             </NavLink>
           </div>
-
-          {/*search box component call kelay   */}
-
-          <SearchBox />
-
+          <div> 
+            <SearchBox />
+          </div>
           <nav className="flex items-center">
-            <ul className=" flex gap-x-4 items-center justify-center ">
+            <ul className="flex gap-x-4 items-center justify-center">
               <li>
                 <button
                   onClick={() => handleNavigation("/")}

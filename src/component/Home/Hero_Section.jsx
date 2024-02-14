@@ -6,7 +6,7 @@ const HeroSection = () => {
     navigate(`/collegelist/india-colleges`);
   }
   return (
-    <div className="relative bg-cover bg-center lg:min-w-[1024px] h-96 flex justify-center items-center">
+    <div className="relative bg-cover bg-center lg:min-w-[1024px] h-96 mt-[70px] flex justify-center items-center">
       <div
         className="absolute inset-0 bg-no-repeat bg-cover bg-center"
         style={{

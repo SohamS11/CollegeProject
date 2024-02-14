@@ -17,23 +17,20 @@ const Footer = () => {
 
           <ul className="mt-2">
             <li>
-              {" "}
+             
               <a href="#">M.B.A </a>
             </li>
             <li>
-              {" "}
+             
               <a href="#">B.Tech/B.E </a>
             </li>
             <li>
-              {" "}
               <a href="#">MCA </a>
             </li>
             <li>
-              {" "}
               <a href="#"> BCA </a>
             </li>
             <li>
-              {" "}
               <a href="#"> M.Tech </a>
             </li>
             <li>
@@ -41,7 +38,6 @@ const Footer = () => {
               <a href="#"> MA </a>
             </li>
             <li>
-              {" "}
               <a href="#">BA </a>
             </li>
           </ul>
@@ -52,7 +48,6 @@ const Footer = () => {
 
           <ul className="mt-2">
             <li>
-              {" "}
               <a href="#">Engineering </a>
             </li>
             <li>
@@ -60,19 +55,15 @@ const Footer = () => {
               <a href="#">Management </a>
             </li>
             <li>
-              {" "}
               <a href="#">Medical </a>
             </li>
             <li>
-              {" "}
               <a href="#"> Law </a>
             </li>
             <li>
-              {" "}
               <a href="#"> Commerce </a>
             </li>
             <li>
-              {" "}
               <a href="#"> science </a>
             </li>
             <li>
@@ -174,7 +165,7 @@ const Footer = () => {
               <a href="#">Karnataka </a>
             </li>
             <li>
-              {" "}
+              
               <a href="#"> West Bengal </a>
             </li>
             <li>

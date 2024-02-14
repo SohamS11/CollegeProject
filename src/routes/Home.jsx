@@ -5,10 +5,12 @@ import Footer from "../Component/Home/Footer";
 import TopCities from "../component/Home/TopCities";
 import Streams from "../Component/Home/Streams";
 import TopStreamsCollege from "../Component/Home/TopStreamsCollege";
+// import Header from "../component/Home/Header";
 
 const Home = () => {
   return (
     <>
+      {/* <Header/> */}
       <Hero_Section />
       <FeaturesSection />
       <TopCities />

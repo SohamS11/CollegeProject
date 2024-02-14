@@ -24,6 +24,7 @@ const TopStreamsCollege = () => {
     window.addEventListener("resize", Getsizewindows);
     Getsizewindows();
   }, []);
+  
   return (
     <div className="flex justify-center ">
       <div className="w-[1300px]">

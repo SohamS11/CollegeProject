@@ -3,6 +3,7 @@ import { TopStreamsCollegeData } from "../../Data/TopStreamsCollegeData";
 import { useEffect, useState } from "react";
 import { BsDot } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md"; //location wala icon
+import { useNavigate } from "react-router-dom";
 
 const TopStreamsCollege = () => {
   const [currentData, setCurrentData] = useState(13);
@@ -31,12 +32,13 @@ const TopStreamsCollege = () => {
         <h1 className="font-semibold text-3xl mt-3 px-4">Top College</h1>
         <p className="ml-5 mb-4">Choose your Dream College</p>
         <div className="flex gap-2 flex-wrap px-4">
-          {TopSreamsList.map((item) => {
+          {TopSreamsList.map((item, index) => {
             // This the list of stremas like management ,laws,medical engineering  etc....
             // updateData is the function which updates the current data after the click and updateData is  called children components
             // eslint-disable-next-line react/jsx-key
             return (
               <ItemButton
+                key={index}
                 data={item}
                 updateData={setCurrentData}
                 activeid={currentData}
@@ -44,7 +46,7 @@ const TopStreamsCollege = () => {
             );
           })}
         </div>
-        <div className="grid sm:grid-cols-1 grid-flow-col-2 md:grid-cols-2 lg:grid-cols-3  h-1/2 gap-x-4 px-4">
+        <div className="grid sm:grid-cols-2 grid-flow-col-1 md:grid-cols-2 lg:grid-cols-3  h-1/2 gap-x-4 px-4">
           {TopStreamsCollegeData[currentData]
             .slice(0, itemNumber)
             .map((item, index) => (
@@ -73,8 +75,12 @@ const ItemButton = ({ data, updateData, activeid }) => {
 };
 
 const ItemList = ({ data }) => {
+  const navigate = useNavigate();
+  const HandleRoute = () => {
+    navigate(`/collegedetail/${encodeURIComponent(data.url)}`);
+  };
   return (
-    <div className=" flex flex-col  justify-around  mt-3 border rounded-md hover:shadow-xl mb-2">
+    <div className=" flex flex-col  justify-around  mt-3 border rounded-md hover:shadow-xl mb-2 cursor-pointer" onClick={HandleRoute}>
       {/* upper div  */}
       <div className="flex mb-5 py-3">
         <div className="flex">

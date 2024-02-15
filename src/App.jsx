@@ -10,7 +10,7 @@ import {
   RoadmapDropdown,
   CollegeList
 } from "./Routes/ExportRoutes";
-import CollegeDetail from "./Routes/Collegedetail";
+import CollegeDetail from "./Routes/Collegedetails";
 import Exam from './Routes/Exam';
 import Courses from './Routes/Courses';
 

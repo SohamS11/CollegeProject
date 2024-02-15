@@ -2,7 +2,7 @@ import { CheckCircle } from "feather-icons-react";
 
 const FeaturesSection = () => {
   return (
-    <section className="bg-gray-200 py-4 md:py-6">
+    <section className="bg-gray-200 py-4 md:py-6 rounded-bl-3xl rounded-br-3xl ">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl lg:text-4xl font-bold mb-6 md:mb-8">Key Features</h2>
         <div className="flex flex-wrap gap-4 justify-center items-start">

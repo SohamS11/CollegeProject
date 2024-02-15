@@ -29,7 +29,7 @@ const CollegeDetail = () => {
   }, [id]); // Added id as dependency to fetch data when id changes
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:w-[1300px]  md:max-w-[786px] sm:max-w-[640px]">
+    <div className="container mx-auto px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {error && (
         <p className="text-red-500">There was an error fetching the data.</p>
       )}
@@ -85,30 +85,9 @@ const CollegeDetail = () => {
                 className="object-cover rounded-lg w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 h-auto mb-4 md:mb-0"
               />
             ))}
-            <Courses data={collegeData.course_data} />
           </div>
-          {/* {collegeData.gallery?.photo_list["Campus Life"]?.map((item) => (
-              <img
-                key={item.id}
-                src={item.iamge_path}
-                alt={item.description}
-                className="object-cover w-full md:w-[200px] h-auto md:h-[300px]"
-              />
-            ))} */}
-          {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {collegeData.compare_courses.map((course, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-4">
-                <h2 className="text-xl font-semibold mb-2">{course.course}</h2>
-                <p className="text-gray-600 mb-2">
-                  Eligibility: {course.eligibility}
-                </p>
-                <p className="text-gray-600 mb-2">
-                  Total Fees : {course.total_fees}
-                </p>
-                <a className="text-blue-500 hover:underline">Learn more</a>
-              </div>
-            ))}
-          </div> */}
+          <Courses data={collegeData.course_data} />
+          
           <div className="container">
             <h1 className="text-2xl font-semibold mb-4">Agency Rankings</h1>
             <To data={collegeData.ranking} />
@@ -234,15 +213,15 @@ const Courses = ({ data }) => {
               </p>
               <p>
                 <span className="font-semibold">Stream:</span>{" "}
-                {course.stream_data.name}
+                {course?.stream_data?.name}
               </p>
               <p>
                 <span className="font-semibold">Ranking Agency:</span>{" "}
-                {course.ranking_data.agency}
+                {course?.ranking_data?.agency}
               </p>
               <p>
                 <span className="font-semibold">Rank:</span>{" "}
-                {course.ranking_data.rank}
+                {course?.ranking_data?.rank}
               </p>
               <a href={course.url} className="text-blue-600 hover:underline">
                 More Info

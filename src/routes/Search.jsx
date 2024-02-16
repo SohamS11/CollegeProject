@@ -120,7 +120,7 @@ const SearchItem = ({ item }) => {
     if (item.item_type === "college") {
       navigate(`/collegedetail/${encodeURIComponent(item.url)}`);
     } else if (item.item_type === "course") {
-      navigate(`/courses/${encodeURIComponent(item.url)}`);
+      navigate(`/course/${encodeURIComponent(item.url)}`);
     } else if (item.item_type === "exam") {
       navigate(`/exam/${encodeURIComponent(item.url)}`);
     } else {

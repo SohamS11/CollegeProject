@@ -27,7 +27,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`flex justify-center bg-white items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'h-[50px] bg-white shadow-md' : 'h-[70px] bg-transparent'}`}>
+    <header className={`flex justify-center bg-white mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'h-[50px] bg-white shadow-md' : 'h-[70px] bg-transparent'}`}>
       <div className="w-[1300px]">
         <div className="flex justify-between mb-3">
           <div className="flex items-center">

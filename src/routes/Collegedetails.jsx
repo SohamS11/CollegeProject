@@ -29,7 +29,7 @@ const CollegeDetail = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
+    <div className="container mx-auto mt-10 px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {error && (
         <p className="text-red-500">There was an error fetching the data.</p>
       )}
@@ -91,6 +91,7 @@ const CollegeDetail = () => {
             dangerouslySetInnerHTML={{
               __html: sanitizeHTML(collegeData.article.description),
             }}
+            className="cdcms_college_highlights"
           ></div>
         </>
       ) : (

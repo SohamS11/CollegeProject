@@ -8,7 +8,20 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Hide any overflowing content */
 }
+
+.cdcms_college_highlights > div {
+  overflow-x: auto; /* Add horizontal overflow for child divs */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cdcms_college_highlights {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}
+
 
 .cdcms_college_highlights p {
   line-height: 1.6;
@@ -53,4 +66,23 @@
 
 .cdcms_college_highlights a:hover {
   text-decoration: underline;
+}
+
+
+.cdcms_cut_off {
+  max-width: 800px; /* Adjust the max-width as needed */
+  padding: 20px; /* Add padding as needed */
+  overflow-x: auto; /* Add horizontal overflow */
+}
+
+.table-responsive {
+  overflow-x: auto; /* Add horizontal overflow to table-responsive */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cdcms_cut_off {
+    max-width: 100%; /* Full width on smaller devices */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
 }

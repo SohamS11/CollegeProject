@@ -11,7 +11,7 @@ import {
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
-import Courses from "./Routes/Courses";
+import Course from "./Routes/Course";
 
 const Layout = ({ children }) => (
   <>
@@ -98,10 +98,10 @@ const App = () => {
           }
         />
         <Route
-          path="/courses/:id"
+          path="/course/:id"
           element={
             <Layout>
-              <Courses />
+              <Course />
             </Layout>
           }
         />

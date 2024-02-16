@@ -9,6 +9,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden; /* Hide any overflowing content */
+  text-align: justify;
 }
 
 .cdcms_college_highlights > div {
@@ -25,14 +26,21 @@
 
 .cdcms_college_highlights p {
   line-height: 1.6;
+  text-align: justify;
 }
 
 .cdcms_college_highlights h2 {
   color: #333;
   font-size: 24px;
   margin-top: 30px;
+  font-weight: bold;
 }
-
+.cdcms_college_highlights h3 {
+  color: #333;
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
 .cdcms_college_highlights strong {
   font-weight: bold;
 }
@@ -86,3 +94,57 @@
     padding: 10px; /* Adjust padding for smaller screens */
   }
 }
+
+.cdcms_section1 {
+  /* Set font family and size */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Style paragraphs */
+.cdcms_section1 p {
+  margin-bottom: 15px; /* Add space between paragraphs */
+  text-align: justify;
+}
+
+/* Style strong elements */
+.cdcms_section1 strong {
+  font-weight: bold;
+  color: #333; /* Set text color */
+}
+
+/* Style links */
+.cdcms_section1 a {
+  color: #007bff; /* Set link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.cdcms_section1 a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Style unordered list */
+.cdcms_section1 ul {
+  list-style-type: none; /* Remove bullet points */
+  padding-left: 0; /* Remove default padding */
+}
+
+/* Style list items */
+.cdcms_section1 li {
+  margin-bottom: 5px; /* Add space between list items */
+}
+
+/* Style iframe */
+.cdcms_section1 iframe {
+  margin-top: 15px; /* Add space above the iframe */
+}
+
+/* Style table of content */
+.cdcms_section1 ol {
+  margin-bottom: 15px; /* Add space below the table of content */
+}
+
+.cdcms_section1 ol li {
+  margin-left: 20px; /* Indent list items */
+}
+

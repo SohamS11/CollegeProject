@@ -17,6 +17,7 @@ const Course = () => {
         if (response.status === 200) {
           setCoursesData(response.data);
           setLoading(false);
+          Showimg();
         } else {
           setError(true);
           setLoading(false);
@@ -29,14 +30,21 @@ const Course = () => {
     }
     fetchData();
   }, [id]);
-
+  function Showimg() {
+    const lazyImages = document.querySelectorAll("img.clgdn_lazyload");
+    lazyImages.forEach((lazyImage) => {
+      const src = lazyImage.getAttribute("data-src");
+      lazyImage.setAttribute("src", src);
+      lazyImage.classList.remove("clgdn_lazyload");
+    });
+  }
   return (
     <div className="container mx-auto px-4 py-8 mt-10 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {loading && <p>Loading...</p>}
       {error && <p>Error fetching data.</p>}
       {coursesData && (
         <div>
-        {/* css add kraychi baki ahe  */}
+          {/* css add kraychi baki ahe  */}
           <div>
             <h1> {coursesData.course_data.course_tag} </h1>
           </div>
@@ -45,11 +53,8 @@ const Course = () => {
               __html: sanitizeHTML(coursesData?.article?.description),
             }}
             className="cdcms_college_highlights"
-          >
-
-          </div>
+          ></div>
         </div>
-        
       )}
     </div>
   );

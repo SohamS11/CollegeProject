@@ -5,7 +5,6 @@ import { Apiurl } from "../Data/ApiData";
 import { MdLocationOn } from "react-icons/md";
 import Courses from "../Component/Collegedetails/Courses";
 
-
 const CollegeDetail = () => {
   const { id } = useParams();
   const [collegeData, setCollegeData] = useState(null);
@@ -17,6 +16,7 @@ const CollegeDetail = () => {
         const response = await axios.get(`${Apiurl}college?id=${id}`);
         if (response.status === 200) {
           setCollegeData(response.data);
+          Showimg();
         } else {
           setError(true);
         }
@@ -27,7 +27,15 @@ const CollegeDetail = () => {
     }
     fetchData();
   }, [id]);
-
+  
+  function Showimg() {
+    const lazyImages = document.querySelectorAll("img.clgdn_lazyload");
+    lazyImages.forEach((lazyImage) => {
+      const src = lazyImage.getAttribute("data-src");
+      lazyImage.setAttribute("src", src);
+      lazyImage.classList.remove("clgdn_lazyload");
+    });
+  }
   return (
     <div className="container mx-auto mt-10 px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {error && (

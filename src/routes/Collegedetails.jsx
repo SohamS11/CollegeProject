@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Apiurl } from "../Data/ApiData";
-import { BsDot } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
+import Courses from "../Component/Collegedetails/Courses";
+
 
 const CollegeDetail = () => {
   const { id } = useParams();
@@ -16,7 +17,6 @@ const CollegeDetail = () => {
         const response = await axios.get(`${Apiurl}college?id=${id}`);
         if (response.status === 200) {
           setCollegeData(response.data);
-          console.log(response);
         } else {
           setError(true);
         }
@@ -26,7 +26,7 @@ const CollegeDetail = () => {
       }
     }
     fetchData();
-  }, [id]); // Added id as dependency to fetch data when id changes
+  }, [id]);
 
   return (
     <div className="container mx-auto px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
@@ -87,11 +87,11 @@ const CollegeDetail = () => {
             ))}
           </div>
           <Courses data={collegeData.course_data} />
-          
-          <div className="container">
-            <h1 className="text-2xl font-semibold mb-4">Agency Rankings</h1>
-            <To data={collegeData.ranking} />
-          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHTML(collegeData.article.description),
+            }}
+          ></div>
         </>
       ) : (
         <p className="text-gray-500">Loading...</p>
@@ -100,138 +100,16 @@ const CollegeDetail = () => {
   );
 };
 
-const RankingsTable = ({ rankings }) => {
-  return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Ranking Agency
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Category
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Rank
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Year
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {rankings.map((ranking, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap">{ranking.agency}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {ranking.category}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{ranking.rank}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{ranking.year}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+const sanitizeHTML = (htmlString) => {
+  // Remove all <a> tags with href containing "zollege.in"
+  htmlString = htmlString.replace(
+    /<a[^>]*href\s*=\s*["'][^"']*zollege\.in[^"']*["'][^>]*>/gi,
+    ""
   );
+
+  // Remove all <iframe> tags
+  htmlString = htmlString.replace(/<iframe.*?<\/iframe>/gi, "");
+
+  return htmlString;
 };
-
-const To = ({ data }) => {
-  // Assuming rankings data is passed as props
-  const rankingsData = data;
-
-  // Extracting rankings from the provided object
-  const rankings = [];
-  for (const agencyId of rankingsData.order) {
-    const agency = rankingsData.agencies[agencyId];
-    for (const year of agency.years) {
-      rankings.push({
-        agency: agency.name,
-        category: "Commerce", // Assuming the category is Commerce based on the provided data
-        rank: `${agency.years.indexOf(year) + 1} out of ${agency.years.length}`,
-        year: year,
-      });
-    }
-  }
-
-  return (
-    <div className="container mx-auto">
-      <RankingsTable rankings={rankings} />
-    </div>
-  );
-};
-
-const Courses = ({ data }) => {
-  return (
-    <>
-      <div>
-        <div>
-          <h1>Degree :</h1>
-          <div className="flex flex-wrap gap-2">
-            {data.degrees.map((item, index) => (
-              <div
-                key={index}
-                className="text-sm border px-1 py-1 rounded-md flex items-center "
-              >
-                <BsDot className="text-2xl" /> <h1>{item.id}</h1>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h1>Stream : </h1>
-          <div className="flex flex-wrap gap-2">
-            {data.streams.map((item, index) => (
-              <div
-                key={index}
-                className="text-sm border px-1 py-1 rounded-md flex items-center"
-              >
-                <h1>{item}</h1>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {data.courses.map((course) => (
-            <div
-              className="bg-white shadow-md rounded-lg p-4"
-              key={course.course_id}
-            >
-              <h2 className="text-lg font-bold mb-2">{course.display_name}</h2>
-              <p>
-                <span className="font-semibold">Duration:</span>{" "}
-                {course.duration_year} years
-              </p>
-              <p>
-                <span className="font-semibold">Eligibility:</span>{" "}
-                {course.eligibility}
-              </p>
-              <p>
-                <span className="font-semibold">Course Type:</span>{" "}
-                {course.type}
-              </p>
-              <p>
-                <span className="font-semibold">Stream:</span>{" "}
-                {course?.stream_data?.name}
-              </p>
-              <p>
-                <span className="font-semibold">Ranking Agency:</span>{" "}
-                {course?.ranking_data?.agency}
-              </p>
-              <p>
-                <span className="font-semibold">Rank:</span>{" "}
-                {course?.ranking_data?.rank}
-              </p>
-              <a href={course.url} className="text-blue-600 hover:underline">
-                More Info
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
-};
-
 export default CollegeDetail;

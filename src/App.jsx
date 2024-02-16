@@ -1,6 +1,5 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Header from "./component/Home/Header";
-
 import {
   AboutUs,
   ContactUs,
@@ -8,11 +7,11 @@ import {
   Search,
   Department,
   RoadmapDropdown,
-  CollegeList
+  CollegeList,
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
-import Exam from './Routes/Exam';
-import Courses from './Routes/Courses';
+import Exam from "./Routes/Exam";
+import Courses from "./Routes/Courses";
 
 const Layout = ({ children }) => (
   <>
@@ -86,7 +85,7 @@ const App = () => {
           path="/collegedetail/:id"
           element={
             <Layout>
-              <CollegeDetail/>
+              <CollegeDetail />
             </Layout>
           }
         />
@@ -96,14 +95,16 @@ const App = () => {
             <Layout>
               <Exam />
             </Layout>
-          }/>
-        <Route 
+          }
+        />
+        <Route
           path="/courses/:id"
           element={
             <Layout>
               <Courses />
             </Layout>
-          }/>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

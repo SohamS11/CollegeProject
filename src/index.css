@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cdcms_college_highlights {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cdcms_college_highlights p {
+  line-height: 1.6;
+}
+
+.cdcms_college_highlights h2 {
+  color: #333;
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+.cdcms_college_highlights strong {
+  font-weight: bold;
+}
+
+.cdcms_college_highlights table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cdcms_college_highlights th,
+.cdcms_college_highlights td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+}
+
+.cdcms_college_highlights ol {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.cdcms_college_highlights ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.cdcms_college_highlights a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.cdcms_college_highlights a:hover {
+  text-decoration: underline;
+}

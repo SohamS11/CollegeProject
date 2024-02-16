@@ -64,7 +64,7 @@ const CollegeList = () => {
 
   return (
     <div
-      className="container mx-auto mt-4 max-w-screen w-full px-4"
+      className="container mx-auto mt-20 max-w-screen w-full px-4"
       ref={containerRef}
     >
       <h1 className="text-2xl font-bold mb-4">{title}</h1>

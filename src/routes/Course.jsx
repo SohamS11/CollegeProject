@@ -13,6 +13,7 @@ const Course = () => {
     async function fetchData() {
       try {
         const response = await axios.get(`${Apiurl}course/${id}`);
+        console.log(response);
         if (response.status === 200) {
           setCoursesData(response.data);
           setLoading(false);
@@ -34,12 +35,21 @@ const Course = () => {
       {loading && <p>Loading...</p>}
       {error && <p>Error fetching data.</p>}
       {coursesData && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: sanitizeHTML(coursesData?.article?.description),
-          }}
-          className="cdcms_college_highlights"
-        ></div>
+        <div>
+        {/* css add kraychi baki ahe  */}
+          <div>
+            <h1> {coursesData.course_data.course_tag} </h1>
+          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHTML(coursesData?.article?.description),
+            }}
+            className="cdcms_college_highlights"
+          >
+
+          </div>
+        </div>
+        
       )}
     </div>
   );

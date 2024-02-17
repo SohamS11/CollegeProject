@@ -45,8 +45,10 @@ const Course = () => {
       {coursesData && (
         <div>
           {/* css add kraychi baki ahe  */}
-          <div>
-            <h1> {coursesData.course_data.course_tag} </h1>
+          <div className="w-screen p-5">
+            <h1 className="font-bold text-3xl">
+              {coursesData.course_data.course_tag} 
+            </h1>
           </div>
           <div
             dangerouslySetInnerHTML={{

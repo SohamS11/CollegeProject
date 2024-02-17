@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
+import Spinner from "../component/Spinner";
+
 
 const CollegeList = () => {
   const { id } = useParams();
@@ -64,12 +66,12 @@ const CollegeList = () => {
 
   return (
     <div
-      className="container mx-auto mt-20 max-w-screen w-full px-4"
+      className="container mx-auto mt-20 max-w-screen w-[1300px] overflow-x-hidden px-4"
       ref={containerRef}
     >
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
       {error ? (
-        <div className="flex justify-center items-center mt-32">
+        <div className=" h-screen w-screen flex justify-center items-center">
           <h1 className="font-semibold">There is a problem with the API</h1>
         </div>
       ) : (
@@ -79,10 +81,14 @@ const CollegeList = () => {
           ))}
         </div>
       )}
-      {loading && <p className="text-center mt-4">Loading...</p>}
+        {/* spinner add kelay  */}
+      {loading && <Spinner/> }
     </div>
   );
 };
+
+
+// This component is card of college detail page 
 
 const CollegeListItem = ({ data }) => {
   const navigate = useNavigate();
@@ -92,7 +98,7 @@ const CollegeListItem = ({ data }) => {
 
   return (
     <div
-      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer"
+      className="border border-gray-200  rounded-lg overflow-x-hidden hover:shadow-lg shadow-md cursor-pointer"
       onClick={handleRoute}
     >
       <img
@@ -125,7 +131,7 @@ const CollegeListItem = ({ data }) => {
             {data?.fees?.map((item, index) => (
               <div key={index}>
                 <span>{item.short_form}</span>
-                <span className="ml-2">{item.fee}</span>
+                <span className="ml-2"> ₹{item.fee}</span>
               </div>
             ))}
           </div>

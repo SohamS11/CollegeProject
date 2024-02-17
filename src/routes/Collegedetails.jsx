@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Apiurl } from "../Data/ApiData";
 import { MdLocationOn } from "react-icons/md";
 import Courses from "../Component/Collegedetails/Courses";
+import Spinner from "../component/Spinner";
 
 const CollegeDetail = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const CollegeDetail = () => {
     });
   }
   return (
-    <div className="container mx-auto mt-10 px-4 py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
+    <div className="container mx-auto mt-10  py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {error && (
         <p className="text-red-500">There was an error fetching the data.</p>
       )}
@@ -103,7 +104,8 @@ const CollegeDetail = () => {
           ></div>
         </>
       ) : (
-        <p className="text-gray-500">Loading...</p>
+          <Spinner/>
+          
       )}
     </div>
   );

@@ -7,7 +7,7 @@ import {
   Search,
   Department,
   RoadmapDropdown,
-  CollegeList,
+  CollegeLists,
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
@@ -68,7 +68,7 @@ const App = () => {
           path="collegeList/:id"
           element={
             <Layout>
-              <CollegeList />
+              <CollegeLists />
             </Layout>
           }
         />

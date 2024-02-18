@@ -28,7 +28,7 @@ const CollegeDetail = () => {
     }
     fetchData();
   }, [id]);
-  
+
   function Showimg() {
     const lazyImages = document.querySelectorAll("img.clgdn_lazyload");
     lazyImages.forEach((lazyImage) => {
@@ -104,8 +104,7 @@ const CollegeDetail = () => {
           ></div>
         </>
       ) : (
-          <Spinner/>
-          
+        <Spinner />
       )}
     </div>
   );

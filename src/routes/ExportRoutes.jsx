@@ -4,6 +4,6 @@ import Home from "./Home";
 import Search from "./Search";
 import Department from "./Department";
 import RoadmapDropdown from "./RoadmapDropdown";
-import CollegeList from "./CollegeList";
+import CollegeLists from "./CollegeLists";
 
-export { AboutUs, ContactUs, Home, Search, Department, RoadmapDropdown , CollegeList};
+export { AboutUs, ContactUs, Home, Search, Department, RoadmapDropdown , CollegeLists};

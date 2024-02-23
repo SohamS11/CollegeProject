@@ -4,6 +4,8 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
 import Spinner from "../component/Spinner";
+import FilterComponent from './FilterComponent';
+import "./Sidebar.css";
 
 const CollegeList = () => {
   const { id } = useParams();
@@ -76,10 +78,13 @@ const CollegeList = () => {
 
   return (
     <div
-      className="container mx-auto mt-20 max-w-screen w-[1300px] overflow-x-hidden px-4"
+      className="flex container mx-auto mt-20 max-w-screen w-[1300px] overflow-x-hidden px-4"
       ref={containerRef}
     >
-      <h1 className="text-2xl font-bold mb-4">{title}</h1>
+      <div className="sidebar">
+      <FilterComponent />
+      </div>
+      {/* <h1 className="text-2xl font-bold mb-4">{title}</h1> */}
       {error ? (
         <div className=" h-screen w-screen flex justify-center items-center">
           <h1 className="font-semibold">There is a problem with the API</h1>
@@ -161,5 +166,7 @@ const CollegeListItem = ({ data }) => {
     </div>
   );
 };
+
+
 
 export default CollegeList;

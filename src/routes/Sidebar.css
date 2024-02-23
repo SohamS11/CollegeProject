@@ -1,0 +1,14 @@
+/* Styles for the sidebar */
+.sidebar {
+    width: 700px; /* Adjust width as needed */
+    background-color: #f3f4f6;
+    padding: 20px;
+    border-right: 1px solid #d1d5db; /* Add a border to separate sidebar from main content */
+  }
+  
+  /* Styles for the main content */
+  .main-content {
+    flex: 1; /* Allow the main content to grow to fill available space */
+    padding: 20px;
+  }
+  

@@ -108,6 +108,7 @@ const sanitizeHTML = (htmlString) => {
   );
   htmlString = htmlString.replace(/<iframe.*?<\/iframe>/gi, "");
   htmlString = htmlString.replace(/data-src=/gi, "src=");
+  htmlString = htmlString.replace(/<center style="position: relative; padding: 28%;"><\/center>/gi,'');
   return htmlString;
 };
 

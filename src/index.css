@@ -194,3 +194,11 @@
 .cdcms_section2 a {
   text-decoration: none;
 }
+
+#faq_id .accordio  {
+  font-weight: bold;
+}
+
+#faq_id .accordio strong {
+  font-weight: bold;
+}

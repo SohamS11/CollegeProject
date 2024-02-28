@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
 import Spinner from "../component/Spinner";
-import FilterComponent from './FilterComponent';
+import FilterComponent from "./FilterComponent";
 import "./Sidebar.css";
 
 const CollegeList = () => {
@@ -19,17 +19,13 @@ const CollegeList = () => {
   const prevScrollY = useRef(0);
 
   useEffect(() => {
-    if (stop) {
-      fetchData();
-    }
-    console.log(pageNumber);
-  }, [pageNumber,stop]); // Fetch data when page number changes
+    fetchData();
+  }, [pageNumber, stop]);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY < prevScrollY.current) {
-        // User is scrolling up
         return;
       }
       prevScrollY.current = currentScrollY;
@@ -42,7 +38,7 @@ const CollegeList = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading]); // Listen for scroll events and trigger page number increment when reaching bottom
+  }, [loading]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -76,47 +72,50 @@ const CollegeList = () => {
     }
   };
 
-  return (
-    <div
-      className="flex container mx-auto mt-20 max-w-screen w-[1300px] overflow-x-hidden px-4"
-      ref={containerRef}
-    >
-      <div className="sidebar">
-      <FilterComponent />
-      </div>
-      {/* <h1 className="text-2xl font-bold mb-4">{title}</h1> */}
-      {error ? (
-        <div className=" h-screen w-screen flex justify-center items-center">
-          <h1 className="font-semibold">There is a problem with the API</h1>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {collegeListData.map((item, index) => (
-            <CollegeListItem data={item} key={index} />
-          ))}
-        </div>
-      )}
-      {/* spinner add kelay  */}
-      {loading && <Spinner />}
-    </div>
-  );
-};
-
-// This component is card of college detail page
-
-const CollegeListItem = ({ data }) => {
   const navigate = useNavigate();
-  const handleRoute = () => {
-    navigate(`/collegedetail/${encodeURIComponent(data.url)}`);
+
+  const handleRoute = (url) => {
+    navigate(`/collegedetail/${encodeURIComponent(url)}`);
   };
 
   return (
     <div
+      className="flex container mx-auto mt-20 max-w-screen w-[1300px] gap-4 overflow-x-hidden px-4 flex-row"
+      ref={containerRef}
+    >
+      <div className="sidebar">
+        <FilterComponent />
+      </div>
+      <div>
+        <h1 className="text-2xl font-bold mb-4">{title}</h1>
+        {error ? (
+          <div className=" h-screen w-screen flex flex-col justify-center items-center">
+            <h1 className="font-semibold">There is a problem with the API</h1>
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
+            {collegeListData.map((item, index) => (
+              <CollegeListItem
+                key={index}
+                data={item}
+                handleRoute={handleRoute}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const CollegeListItem = ({ data, handleRoute }) => {
+  return (
+    <div
       className="border border-gray-200  rounded-lg overflow-x-hidden hover:shadow-lg shadow-md cursor-pointer"
-      onClick={handleRoute}
+      onClick={() => handleRoute(data.url)}
     >
       <img
-        className="w-full h-64 object-cover"
+        className="w-full h-64 sm:w-screen object-cover"
         src={`https://static.zollege.in/${data?.cover}`}
         alt={data?.college_name}
       />
@@ -166,7 +165,5 @@ const CollegeListItem = ({ data }) => {
     </div>
   );
 };
-
-
 
 export default CollegeList;

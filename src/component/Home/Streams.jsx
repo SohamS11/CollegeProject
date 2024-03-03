@@ -11,7 +11,7 @@ const Streams = () => {
         </div>
         <hr />
       </div>
-      <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+      <div className=" grid grid-cols-2 sm:grid-cols-3  md:grid-cols-5 gap-3">
         {StreamsData.map((item, index) => {
           return <StreamsItem data={item} key={index} />;
         })}

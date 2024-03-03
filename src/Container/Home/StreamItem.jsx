@@ -9,7 +9,7 @@ const StreamsItem = ({ data }) => {
   return (
     <>
       <div
-        className="p-2 flex gap-3 justify-start  items-start rounded-md hover:shadow-lg cursor-pointer"
+        className="p-2 flex gap-3 justify-start  items-start rounded-md hover:shadow-lg cursor-pointer hover:scale-110 transition duration-300 ease-in"
         onClick={() => HandleRoute(`collegelist/${data.link}`)}
       >
         <div

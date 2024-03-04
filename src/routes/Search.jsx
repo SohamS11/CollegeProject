@@ -65,6 +65,7 @@ const Search = () => {
               type="text"
               placeholder="Search for colleges, Courses, Exams or Articles..."
               value={searchQuery}
+              autoFocus
               onChange={handleSearch}
               className="w-full rounded-lg bg-gray-200 text-gray-700 leading-tight focus:outline-none py-3 px-3 pr-20"
             />

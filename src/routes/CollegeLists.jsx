@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
 import Spinner from "../component/Spinner";
-import FilterComponent from './FilterComponent';
+import FilterComponent from "./FilterComponent";
 import "./Sidebar.css";
 
 const CollegeList = () => {
@@ -15,25 +14,26 @@ const CollegeList = () => {
   const [title, setTitle] = useState("");
   const [error, setError] = useState(false);
   const [stop, setStop] = useState(true);
-  const containerRef = useRef(null);
+  const collegeListContainerRef = useRef(null);
   const prevScrollY = useRef(0);
 
   useEffect(() => {
-    if (stop) {
-      fetchData();
-    }
-    console.log(pageNumber);
-  }, [pageNumber,stop]); // Fetch data when page number changes
+    fetchData();
+  }, [id, pageNumber, stop]);
+
+  useEffect(() => {
+    setCollegeListData([]);
+    setPageNumber(0);
+  }, [id]);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY < prevScrollY.current) {
-        // User is scrolling up
         return;
       }
       prevScrollY.current = currentScrollY;
-      const { scrollTop, clientHeight, scrollHeight } = containerRef.current;
+      const { scrollTop, clientHeight, scrollHeight } = collegeListContainerRef.current;
       if (scrollHeight - scrollTop <= clientHeight) {
         if (!loading) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
@@ -42,7 +42,7 @@ const CollegeList = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading]); // Listen for scroll events and trigger page number increment when reaching bottom
+  }, [loading]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -76,44 +76,51 @@ const CollegeList = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleRoute = (url) => {
+    navigate(`/collegedetail/${encodeURIComponent(url)}`);
+  };
+
   return (
-    <div
-      className="flex container mx-auto mt-20 max-w-screen w-[1300px] overflow-x-hidden px-4"
-      ref={containerRef}
-    >
-      <div className="sidebar">
-      <FilterComponent />
+    <div className="container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex" >
+      <div className="w-1/4" style={{ position: 'sticky', top: 0, height: 'calc(100vh - 50px)', overflowY: 'auto' }}>
+        <FilterComponent Id={id} />
       </div>
-      {/* <h1 className="text-2xl font-bold mb-4">{title}</h1> */}
-      {error ? (
-        <div className=" h-screen w-screen flex justify-center items-center">
-          <h1 className="font-semibold">There is a problem with the API</h1>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {collegeListData.map((item, index) => (
-            <CollegeListItem data={item} key={index} />
-          ))}
-        </div>
-      )}
-      {/* spinner add kelay  */}
-      {loading && <Spinner />}
+      <div className="w-3/4 overflow-y-auto" ref={collegeListContainerRef}>
+        <h1 className="text-2xl font-bold mb-4 align-middle">{title}</h1>
+        {error ? (
+          <div className="h-screen flex flex-col justify-center items-center">
+            <h1 className="font-semibold">
+              There is a problem with the API
+            </h1>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {collegeListData.map((item, index) => (
+              <CollegeListItem
+                key={index}
+                data={item}
+                handleRoute={handleRoute}
+              />
+            ))}
+          </div>
+        )}
+        {loading && (
+          <div className="h-screen flex justify-center items-center">
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-// This component is card of college detail page
-
-const CollegeListItem = ({ data }) => {
-  const navigate = useNavigate();
-  const handleRoute = () => {
-    navigate(`/collegedetail/${encodeURIComponent(data.url)}`);
-  };
-
+const CollegeListItem = ({ data, handleRoute }) => {
   return (
     <div
-      className="border border-gray-200  rounded-lg overflow-x-hidden hover:shadow-lg shadow-md cursor-pointer"
-      onClick={handleRoute}
+      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer"
+      onClick={() => handleRoute(data.url)}
     >
       <img
         className="w-full h-64 object-cover"
@@ -166,7 +173,5 @@ const CollegeListItem = ({ data }) => {
     </div>
   );
 };
-
-
 
 export default CollegeList;

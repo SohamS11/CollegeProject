@@ -5,13 +5,15 @@ import {
   ContactUs,
   Home,
   Search,
-  Department,
+  Register,
   RoadmapDropdown,
   CollegeLists,
+  Login
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
 import Course from "./Routes/Course";
+// import Signup from "./routes/Signup";
 
 const Layout = ({ children }) => (
   <>
@@ -49,19 +51,16 @@ const App = () => {
           }
         />
         <Route
-          path="/department"
+          path="/register"
           element={
-            <Layout>
-              <Department />
-            </Layout>
+            
+            <Register />
           }
         />
         <Route
-          path="/allroadmap/*"
+          path="/login"
           element={
-            <Layout>
-              <RoadmapDropdown />
-            </Layout>
+           <Login />
           }
         />
         <Route

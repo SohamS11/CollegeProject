@@ -22,7 +22,7 @@ const Footer = () => {
     Getsizewindows();
   }, []);
   return (
-    <div className="bg-[#f4f4f4] p-5">
+    <div className="bg-[rgb(244,244,244)] p-5">
       <div className=" flex justify-around">
         {FooterData.slice(0, itemNumber).map((item, index) => {
           return <FooterItem data={item} key={index} />;

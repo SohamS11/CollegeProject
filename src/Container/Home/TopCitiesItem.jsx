@@ -7,8 +7,9 @@ const TopCitiesItem = ({ data }) => {
     navigate(route);
   };
   return (
+    // hover:scale-110 transition duration-300 ease-in
     <div
-      className="mt-5 mb-10  pt-5 mr-5 flex justify-between items-center flex-col border p-2 rounded-md hover:shadow-lg hover:underline cursor-pointer"
+      className="mt-5 mb-10  pt-5 mr-5 flex justify-between hover:scale-110 transition duration-300 ease-in items-center flex-col border p-2 rounded-md hover:shadow-lg hover:underline cursor-pointer"
       onClick={() => HandleRoute(`collegelist/${data.link}`)}
     >
       {/* this is an svg icon   */}

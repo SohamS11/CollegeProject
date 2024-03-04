@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
@@ -15,12 +14,17 @@ const CollegeList = () => {
   const [title, setTitle] = useState("");
   const [error, setError] = useState(false);
   const [stop, setStop] = useState(true);
-  const containerRef = useRef(null);
+  const collegeListContainerRef = useRef(null);
   const prevScrollY = useRef(0);
 
   useEffect(() => {
     fetchData();
-  }, [pageNumber, stop]);
+  }, [id, pageNumber, stop]);
+
+  useEffect(() => {
+    setCollegeListData([]);
+    setPageNumber(0);
+  }, [id]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +33,7 @@ const CollegeList = () => {
         return;
       }
       prevScrollY.current = currentScrollY;
-      const { scrollTop, clientHeight, scrollHeight } = containerRef.current;
+      const { scrollTop, clientHeight, scrollHeight } = collegeListContainerRef.current;
       if (scrollHeight - scrollTop <= clientHeight) {
         if (!loading) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
@@ -79,21 +83,20 @@ const CollegeList = () => {
   };
 
   return (
-    <div
-      className="flex container mx-auto mt-20 max-w-screen w-[1300px] gap-4 overflow-x-hidden px-4 flex-row"
-      ref={containerRef}
-    >
-      <div className="sidebar">
-        <FilterComponent />
+    <div className="container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex" >
+      <div className="w-1/4" style={{ position: 'sticky', top: 0, height: 'calc(100vh - 50px)', overflowY: 'auto' }}>
+        <FilterComponent Id={id} />
       </div>
-      <div>
-        <h1 className="text-2xl font-bold mb-4">{title}</h1>
+      <div className="w-3/4 overflow-y-auto" ref={collegeListContainerRef}>
+        <h1 className="text-2xl font-bold mb-4 align-middle">{title}</h1>
         {error ? (
-          <div className=" h-screen w-screen flex flex-col justify-center items-center">
-            <h1 className="font-semibold">There is a problem with the API</h1>
+          <div className="h-screen flex flex-col justify-center items-center">
+            <h1 className="font-semibold">
+              There is a problem with the API
+            </h1>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {collegeListData.map((item, index) => (
               <CollegeListItem
                 key={index}
@@ -101,6 +104,11 @@ const CollegeList = () => {
                 handleRoute={handleRoute}
               />
             ))}
+          </div>
+        )}
+        {loading && (
+          <div className="h-screen flex justify-center items-center">
+            <Spinner />
           </div>
         )}
       </div>
@@ -111,11 +119,11 @@ const CollegeList = () => {
 const CollegeListItem = ({ data, handleRoute }) => {
   return (
     <div
-      className="border border-gray-200  rounded-lg overflow-x-hidden hover:shadow-lg shadow-md cursor-pointer"
+      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer"
       onClick={() => handleRoute(data.url)}
     >
       <img
-        className="w-full h-64 sm:w-screen object-cover"
+        className="w-full h-64 object-cover"
         src={`https://static.zollege.in/${data?.cover}`}
         alt={data?.college_name}
       />

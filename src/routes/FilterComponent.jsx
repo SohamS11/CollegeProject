@@ -91,7 +91,6 @@ const FilterComponent = ({ Id }) => {
 
   return (
     <div className="border border-gray-300 rounded p-4">
-<<<<<<< HEAD
       <h2 className="mb-4 text-lg font-semibold">Courses</h2>
       <input className="border border-gray-300 rounded-3xl px-4 py-2 w-full focus:outline-none focus:border-blue-500" type="text" placeholder="search" />
       {/* Checkboxes for course options */}
@@ -227,58 +226,6 @@ const FilterComponent = ({ Id }) => {
       <div className="mt-4">
         {/* Display selected courses */}
         <p>Selected Courses: {selectedCourses.join(", ")}</p>
-=======
-      {Object.entries(filterData).map(([key, value]) => (
-        <FilterItem
-          key={key}
-          filterName={key}
-          data={value}
-          selectedFilterData={selectedFilterData}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      ))}
-    </div>
-  );
-};
-
-const FilterItem = ({
-  filterName,
-  data,
-  selectedFilterData,
-  handleCheckboxChange,
-}) => {
-  return (
-    <div className="mb-6">
-      <div>
-        <h2 className="mb-4 text-lg font-semibold">{data.text}</h2>
-        <input
-          className="border border-gray-300 rounded-3xl px-4 py-2 w-full focus:outline-none focus:border-blue-500"
-          type="text"
-          placeholder="Search"
-        />
-      </div>
-      <div className="mt-4 max-h-40 overflow-y-auto">
-        {data.values.map((item, index) => (
-          <div key={index} className="mb-2">
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                value={item.value}
-                className="form-checkbox h-5 w-5 text-blue-600 mr-2 border-gray-300 rounded focus:ring-blue-500"
-                checked={
-                  selectedFilterData[filterName] &&
-                  selectedFilterData[filterName].includes(item.value)
-                }
-                onChange={() => handleCheckboxChange(filterName, item.value)}
-              />
-              <span className="text-sm">
-                {item.text}{" "}
-                <span className=" text-blue-600">({item.count})</span>{" "}
-              </span>
-            </label>
-          </div>
-        ))}
->>>>>>> e60fd0c09d76668e16ff98cd39faa53e0cf742ac
       </div>
     </div>
   );

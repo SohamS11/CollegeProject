@@ -17,7 +17,6 @@ const CollegeDetail = () => {
         const response = await axios.get(`${Apiurl}college?id=${id}`);
         if (response.status === 200) {
           setCollegeData(response.data);
-          Showimg();
         } else {
           setError(true);
         }
@@ -29,14 +28,6 @@ const CollegeDetail = () => {
     fetchData();
   }, [id]);
 
-  function Showimg() {
-    const lazyImages = document.querySelectorAll("img.clgdn_lazyload");
-    lazyImages.forEach((lazyImage) => {
-      const src = lazyImage.getAttribute("data-src");
-      lazyImage.setAttribute("src", src);
-      lazyImage.classList.remove("clgdn_lazyload");
-    });
-  }
   return (
     <div className="container mx-auto mt-10  py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
       {error && (
@@ -111,15 +102,14 @@ const CollegeDetail = () => {
 };
 
 const sanitizeHTML = (htmlString) => {
-  // Remove all <a> tags with href containing "zollege.in"
   htmlString = htmlString.replace(
     /<a[^>]*href\s*=\s*["'][^"']*zollege\.in[^"']*["'][^>]*>/gi,
     ""
   );
-
-  // Remove all <iframe> tags
   htmlString = htmlString.replace(/<iframe.*?<\/iframe>/gi, "");
-
+  htmlString = htmlString.replace(/data-src=/gi, "src=");
+  htmlString = htmlString.replace(/<center style="position: relative; padding: 28%;"><\/center>/gi,'');
   return htmlString;
 };
+
 export default CollegeDetail;

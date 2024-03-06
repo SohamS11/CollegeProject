@@ -21,7 +21,7 @@ const ItemButton = ({ data }) => {
   const navigate = useNavigate(); // Call useNavigate inside the functional component
   return (
     <button
-      className="text-sm border px-2 py-1 rounded-md hover:bg-blue-500"
+      className="text-sm border px-2 py-1 rounded-md hover:bg-blue-500  dark:bg-gray-800 text-gray-800 dark:text-white"
       onClick={() => navigate(`/course/${encodeURIComponent(data.link)}`)}
     >
       <h2 className="flex">

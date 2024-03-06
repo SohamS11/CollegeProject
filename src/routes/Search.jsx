@@ -129,25 +129,27 @@ const SearchItem = ({ item }) => {
     }
   }
   return (
-    <div
-      className="flex justify-between items-center gap-2 mx-2 py-1 cursor-pointer"
-      onClick={() => HandleRoute()}
-    >
-      <div className="flex gap-3 justify-start items-center py-2">
-        <img
-          src={
-            item.logo
-              ? item.logo
-              : "https://th.bing.com/th/id/OIP.GnqZiwU7k5f_kRYkw8FNNwHaF3?w=277&h=220&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-          }
-          className="w-14 h-14"
-        />
-        <div>
-          <h1>{item.name}</h1>
+    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+      <div
+        className="flex justify-between items-center gap-2 mx-2 py-1 cursor-pointer bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white"
+        onClick={() => HandleRoute()}
+      >
+        <div className="flex gap-3 justify-start items-center py-2">
+          <img
+            src={
+              item.logo
+                ? item.logo
+                : "https://th.bing.com/th/id/OIP.GnqZiwU7k5f_kRYkw8FNNwHaF3?w=277&h=220&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            }
+            className="w-14 h-14"
+          />
+          <div>
+            <h1>{item.name}</h1>
+          </div>
         </div>
-      </div>
-      <div>
-        <h1>{item.item_type}</h1>
+        <div>
+          <h1>{item.item_type}</h1>
+        </div>
       </div>
     </div>
   );

@@ -1,25 +1,23 @@
 import React from "react";
-import Hero_Section from "../component/Home/Hero_Section";
+import HeroSection from "../component/Home/Hero_Section";
 import FeaturesSection from "../component/Home/FeaturesSection";
 import Footer from "../Component/Home/Footer";
 import TopCities from "../component/Home/TopCities";
 import Streams from "../Component/Home/Streams";
 import TopStreamsCollege from "../Component/Home/TopStreamsCollege";
 import SelectCourse from "../Component/Home/SelectCourse";
-// import Header from "../component/Home/Header";
 
 const Home = () => {
   return (
-    <>
-      {/* <Header/> */}
-      <Hero_Section />
+    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+      <HeroSection />
       <FeaturesSection />
       <TopCities />
       <Streams />
-      <SelectCourse/>
-      <TopStreamsCollege/>
+      <SelectCourse />
+      <TopStreamsCollege />
       <Footer />
-    </>
+    </div>
   );
 };
 

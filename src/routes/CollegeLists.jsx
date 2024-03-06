@@ -33,7 +33,8 @@ const CollegeList = () => {
         return;
       }
       prevScrollY.current = currentScrollY;
-      const { scrollTop, clientHeight, scrollHeight } = collegeListContainerRef.current;
+      const { scrollTop, clientHeight, scrollHeight } =
+        collegeListContainerRef.current;
       if (scrollHeight - scrollTop <= clientHeight) {
         if (!loading) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
@@ -83,34 +84,42 @@ const CollegeList = () => {
   };
 
   return (
-    <div className="container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex" >
-      <div className="w-1/4" style={{ position: 'sticky', top: 0, height: 'calc(100vh - 50px)', overflowY: 'auto' }}>
-        <FilterComponent Id={id} />
-      </div>
-      <div className="w-3/4 overflow-y-auto" ref={collegeListContainerRef}>
-        <h1 className="text-2xl font-bold mb-4 align-middle">{title}</h1>
-        {error ? (
-          <div className="h-screen flex flex-col justify-center items-center">
-            <h1 className="font-semibold">
-              There is a problem with the API
-            </h1>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {collegeListData.map((item, index) => (
-              <CollegeListItem
-                key={index}
-                data={item}
-                handleRoute={handleRoute}
-              />
-            ))}
-          </div>
-        )}
-        {loading && (
-          <div className="h-screen flex justify-center items-center">
-            <Spinner />
-          </div>
-        )}
+    <div className=" bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+      <div className="container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex">
+        <div
+          className="w-1/4"
+          style={{
+            position: "sticky",
+            top: 0,
+            height: "calc(100vh - 30px)",
+            overflowY: "auto",
+          }}
+        >
+          <FilterComponent Id={id} />
+        </div>
+        <div className="w-3/4 overflow-y-auto" ref={collegeListContainerRef}>
+          <h1 className="text-2xl font-bold mb-4 align-middle">{title}</h1>
+          {error ? (
+            <div className="h-screen flex flex-col justify-center items-center">
+              <h1 className="font-semibold">There is a problem with the API</h1>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {collegeListData.map((item, index) => (
+                <CollegeListItem
+                  key={index}
+                  data={item}
+                  handleRoute={handleRoute}
+                />
+              ))}
+            </div>
+          )}
+          {loading && (
+            <div className="h-screen flex justify-center items-center">
+              <Spinner />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -119,7 +128,7 @@ const CollegeList = () => {
 const CollegeListItem = ({ data, handleRoute }) => {
   return (
     <div
-      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer"
+      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer dark:bg-gray-800 text-gray-800 dark:text-white"
       onClick={() => handleRoute(data.url)}
     >
       <img

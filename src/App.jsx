@@ -16,10 +16,11 @@ import Course from "./Routes/Course";
 // import Signup from "./routes/Signup";
 
 const Layout = ({ children }) => (
-  <>
+  <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
     <Header />
     {children}
-  </>
+  
+  </div>
 );
 
 const App = () => {

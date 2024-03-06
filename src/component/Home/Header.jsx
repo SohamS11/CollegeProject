@@ -17,7 +17,8 @@ const Header = () => {
   };
 
   return (
-    <header className="absolute top-2 left-0 right-0 z-50 flex justify-center bg-transparent">
+    <div className="dark:bg-gray-800">
+    <header className="absolute top-2 left-0 right-0 z-50 flex justify-center dark:bg-gray-800">
       <div className="w-[1300px]">
         <div className="flex justify-between mb-3 text-black">
           <div className="flex items-center text-black">
@@ -65,6 +66,7 @@ const Header = () => {
         </div>
       </div>
     </header>
+    </div>
   );
 };
 

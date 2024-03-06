@@ -21,19 +21,18 @@ const Footer = () => {
     window.addEventListener("resize", Getsizewindows);
     Getsizewindows();
   }, []);
+
   return (
-    <div className="bg-[rgb(244,244,244)] p-5">
-      <div className=" flex justify-around">
+    <div className="bg-gray-800 p-5 text-white mt-4">
+      <div className="flex justify-around">
         {FooterData.slice(0, itemNumber).map((item, index) => {
           return <FooterItem data={item} key={index} />;
         })}
       </div>
       <div className="w-full flex flex-col justify-center items-center mt-10 mb-10">
-        <div className="w-full mt-5 h-0.5 bg-black opacity-25 "> </div>
+        <div className="w-full mt-5 h-0.5 bg-white opacity-25 "></div>
         <div className="flex flex-col items-center mt-10 ">
-          <div className=" text-black opacity-60 font-bold">
-            Contact With Us
-          </div>
+          <div className="font-bold">Contact With Us</div>
           <div className="flex flex-row space-x-4 mt-2 pb-10">
             <a href="https://www.facebook.com/">
               <img
@@ -75,7 +74,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="w-full h-0.5 bg-black opacity-25 "> </div>
+        <div className="w-full h-0.5 bg-white opacity-25 "></div>
         <div>© 2024 MY COLLEGE Web Pvt. Ltd. All Rights Reserved</div>
       </div>
     </div>

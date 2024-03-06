@@ -6,7 +6,7 @@ const images = [
   "../src/assets/images/collegeBackground2.jpg",
   "../src/assets/images/collegeBackground3.jpg",
   "../src/assets/images/collegeBackground5.jpeg",
-]; // Add more image URLs as needed
+]; // Placeholder URLs, replace with actual image URLs
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -27,9 +27,7 @@ const HeroSection = () => {
   return (
     <div
       className="relative bg-cover bg-center min-h-[400px] lg:min-h-[70vh] mt-[70px] flex justify-center items-center transition-opacity duration-1000"
-      style={{
-        backgroundImage: `url(${images[currentImageIndex]})`,
-      }}
+      style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="text-white text-center p-8 relative z-10">

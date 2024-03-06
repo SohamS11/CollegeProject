@@ -32,23 +32,25 @@ const Exam = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-10 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
-      {loading && <p>Loading...</p>}
-      {error && <p>Error fetching data.</p>}
-      {examData && (
-        <div>
-          {/* css add kraychi baki ahe  */}
+    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+      <div className="container mx-auto px-4 py-8 mt-10 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
+        {loading && <p>Loading...</p>}
+        {error && <p>Error fetching data.</p>}
+        {examData && (
           <div>
-            <h1>  </h1>
+            {/* css add kraychi baki ahe  */}
+            <div>
+              <h1> </h1>
+            </div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: sanitizeHTML(examData?.description),
+              }}
+              className="cdcms_college_highlights"
+            ></div>
           </div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: sanitizeHTML(examData?.description),
-            }}
-            className="cdcms_college_highlights"
-          ></div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
@@ -60,6 +62,10 @@ const sanitizeHTML = (htmlString) => {
     ""
   );
   htmlString = htmlString.replace(/<iframe.*?<\/iframe>/gi, "");
+  htmlString = htmlString.replace(
+    /style="background: #eee; border: 1px solid #ccc; padding: 5px 10px;"/gi,
+    'style="background:rgb(31, 41, 55); border: 1px solid #ccc; padding: 5px 10px;"'
+  );
   return htmlString;
 };
 export default Exam;

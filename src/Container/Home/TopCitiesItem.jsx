@@ -1,23 +1,26 @@
+// TopCitiesItem.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const TopCitiesItem = ({ data }) => {
   const navigate = useNavigate();
-  const HandleRoute = (route) => {
+
+  const handleRoute = (route) => {
     navigate(route);
   };
+
   return (
-    // hover:scale-110 transition duration-300 ease-in
     <div
-      className="mt-5 mb-10  pt-5 mr-5 flex justify-between hover:scale-110 transition duration-300 ease-in items-center flex-col border p-2 rounded-md hover:shadow-lg hover:underline cursor-pointer"
-      onClick={() => HandleRoute(`collegelist/${data.link}`)}
+      className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white mt-5 mb-10 pt-5 mr-5 flex justify-between hover:scale-110 transition duration-300 ease-in items-center flex-col border p-2 rounded-md hover:shadow-lg hover:underline cursor-pointer"
+      onClick={() => handleRoute(`collegelist/${data.link}`)}
     >
-      {/* this is an svg icon   */}
+      {/* SVG icon */}
       <div
         dangerouslySetInnerHTML={{ __html: data.svg }}
-        className="h-[80px] w-[100px] flex content-end justify-end grow-0 "
+        className="h-[80px] w-[100px] flex content-end justify-end grow-0 filter grayscale "
+        style={{ filter: "invert(100%)" }} 
       />
-      <p className="mt-2 capitalize ">{data.name}</p>
+      <p className="mt-2 capitalize">{data.name}</p>
     </div>
   );
 };

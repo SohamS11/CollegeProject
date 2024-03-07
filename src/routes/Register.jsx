@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {Link, useNavigate} from 'react-router-dom';
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -10,21 +9,23 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    axios.post('http://localhost:3000/auth/register',{
-      username,
-      email,
-      password,
-    }).then(response => {
-      if(response.data.status) {
-       navigate('/login')
-      }
-
-    }).catch(err=> {
-      console.log(err)
-    })
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/auth/register", {
+        username,
+        email,
+        password,
+      })
+      .then((response) => {
+        if (response.data.status) {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-md p-8 w-full max-w-md">
@@ -83,9 +84,8 @@ const Register = () => {
           >
             Sign Up
           </button>
-          <p>Already have account ? 
-
-          <Link to='/login'>Login</Link>
+          <p>
+            Already have account ?<Link to="/login">Login</Link>
           </p>
         </form>
       </div>

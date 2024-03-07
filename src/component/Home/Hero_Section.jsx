@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const images = [
   "../src/assets/images/collegeBackground.jpg",
   "../src/assets/images/collegeBackground2.jpg",
   "../src/assets/images/collegeBackground3.jpg",
-  "../src/assets/images/collegeBackground5.jpeg",
 ]; // Placeholder URLs, replace with actual image URLs
 
 const HeroSection = () => {

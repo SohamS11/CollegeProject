@@ -8,7 +8,7 @@ import {
   Register,
   RoadmapDropdown,
   CollegeLists,
-  Login
+  Login,
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
@@ -19,7 +19,6 @@ const Layout = ({ children }) => (
   <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
     <Header />
     {children}
-  
   </div>
 );
 
@@ -51,19 +50,8 @@ const App = () => {
             </Layout>
           }
         />
-        <Route
-          path="/register"
-          element={
-            
-            <Register />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-           <Login />
-          }
-        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="collegeList/:id"
           element={

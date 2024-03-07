@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {Link, useNavigate} from 'react-router-dom';
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
- axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    axios.post('http://localhost:3000/auth/login',{
-    
-      email,
-      password,
-    }).then(response => {
-      if(response.data.status) {
-       navigate('/home')
-      }
-
-    }).catch(err=> {
-      console.log(err)
-    })
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/auth/login", {
+        email,
+        password,
+      })
+      .then((response) => {
+        if (response.data.status) {
+          navigate("/home");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-md p-8 w-full max-w-md">
@@ -34,8 +33,6 @@ const Register = () => {
           Login
         </h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
-         
-
           <div>
             <label
               htmlFor="email"
@@ -73,9 +70,8 @@ const Register = () => {
           >
             Login
           </button>
-          <p>don't have account ? 
-
-          <Link to='/Register'>Register</Link>
+          <p>
+            don't have account ?<Link to="/Register">Register</Link>
           </p>
         </form>
       </div>

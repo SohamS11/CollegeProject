@@ -4,23 +4,23 @@ import SearchBox from "../../Container/Home/SearchBox";
 import { IoSearchOutline } from "react-icons/io5";
 import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
+import Color from "../../Theme/Color";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
 
 const Header = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showBurger, setShowBurger] = useState(false); // this is for rednder display comes on mobile
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // To track menu bar is open or not
+  const [showBurger, setShowBurger] = useState(false); // this is for render display on mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // To track if menu bar is open or not
+  const { toggleDarkMode, darkMode } = useThemeContext();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const {toggleDarkMode} = useThemeContext()
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
-      if (scrollTop > 70) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(scrollTop > 70);
     };
 
     const handleResize = () => {
@@ -54,53 +54,62 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen); // Toggle the menu overlay
   };
 
+  const handleModeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+    toggleDarkMode(!isDarkMode);
+  };
+
   return (
     <header
       className={`flex justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "h-[50px] bg-white shadow-md" : "h-[70px] bg-transparent"
+        isScrolled
+          ? "h-[50px] " + Color[isDarkMode ? "dark" : "light"].header
+          : "h-[70px] " + Color[isDarkMode ? "dark" : "light"].header
       }`}
     >
       {/* Overlay for Hamburger Menu */}
-      {isMobile && isMenuOpen && (
-        <div
-          className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
-          onClick={handleMenuToggle}
-        ></div>
-      )}
-
-      <div className="w-[1300px] relative">
-        <div className="flex justify-between mb-3">
+      <div className="w-full max-w-[1300px] relative">
+        <div className="flex justify-between items-center px-4 md:px-0">
           <div className="flex items-center">
-            <NavLink to="/" className="text-black text-2xl font-bold">
+            <NavLink
+              to="/"
+              className={`text-2xl font-bold ${
+                Color[isDarkMode ? "dark" : "light"].text
+              }`}
+            >
               <h2>MyCollege</h2>
             </NavLink>
-            <div>
-              <button onClick={()=>toggleDarkMode(true)} className="text-black">
-                dark
-              </button>
-              <button onClick={()=>toggleDarkMode(false)} className="text-black">
-                light
-              </button>
-            </div>
           </div>
-
+          {/* Overlay for Hamburger Menu */}
+          {isMobile && isMenuOpen && (
+            <div
+              className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
+              onClick={handleMenuToggle}
+            ></div>
+          )}
           {/* Search bar */}
           {!isMobile && <SearchBox />}
 
           {/* Search for mobile application */}
           {isMobile && (
             <div
-              className="flex bg-blue-500 mr-5 md:bg-green-500 items-center justify-center px-3 mt-2 border rounded-full cursor-pointer"
+              className={`flex gap-2 p-2${
+                darkMode ? "text-white " : "text-black bg-blue-500 "
+              } md:bg-green-500 items-center justify-center px-3 mt-2 border rounded-full cursor-pointer`}
               onClick={clickHandler}
             >
               <IoSearchOutline />
-              <p> Search </p>
+              <p className=""> Search </p>
             </div>
           )}
 
           {/* Hamburger Icon */}
           {isMobile && (
-            <div className="flex justify-center items-center">
+            <div
+              className={`mx-3 flex justify-center items-center ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
               <GiHamburgerMenu className="h-5 w-8" onClick={handleMenuToggle} />
             </div>
           )}
@@ -112,7 +121,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/")}
-                    className="hover:text-gray-300"
+                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                   >
                     Home
                   </button>
@@ -120,7 +129,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/about")}
-                    className="hover:text-gray-300"
+                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                   >
                     About
                   </button>
@@ -128,7 +137,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/contact")}
-                    className="hover:text-gray-300"
+                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                   >
                     Contact
                   </button>
@@ -136,7 +145,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/department")}
-                    className="hover:text-gray-300"
+                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                   >
                     Department
                   </button>
@@ -149,7 +158,11 @@ const Header = () => {
 
       {/* Hamburger Menu */}
       {showBurger && (
-        <div className="h-screen w-[150px] fixed top-0 right-0 bg-red-600  flex flex-col">
+        <div
+          className={`h-screen w-full max-w-[150px] fixed top-0 right-0 ${`mx-3 ${
+            darkMode ? "text-white" : "text-black"
+          }`} ${Color[isDarkMode ? "dark" : "light"].filterbox} flex flex-col`}
+        >
           <GiCrossMark
             onClick={handleMenuToggle}
             className="absolute top-2 right-7"
@@ -159,7 +172,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/")}
-                  className="hover:text-gray-300"
+                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                 >
                   Home
                 </button>
@@ -167,7 +180,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/about")}
-                  className="hover:text-gray-300"
+                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                 >
                   About
                 </button>
@@ -175,7 +188,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/contact")}
-                  className="hover:text-gray-300"
+                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                 >
                   Contact
                 </button>
@@ -183,7 +196,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/department")}
-                  className="hover:text-gray-300"
+                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
                 >
                   Department
                 </button>
@@ -192,6 +205,14 @@ const Header = () => {
           </nav>
         </div>
       )}
+      <div className="flex items-center">
+        <button
+          onClick={handleModeToggle}
+          className={`mx-3 ${darkMode ? "text-white" : "text-black"}`}
+        >
+          {isDarkMode ? <CiLight size={30} /> : <MdDarkMode size={30} />}
+        </button>
+      </div>
     </header>
   );
 };

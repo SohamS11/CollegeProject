@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { BsDot } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md"; //location wala icon
 import { useNavigate } from "react-router-dom";
+import { useThemeContext } from "../../ContextApi/ThemeContext";
+import Color from "../../Theme/Color";
 
 const TopStreamsCollege = () => {
   const [currentData, setCurrentData] = useState(13);
@@ -21,15 +23,17 @@ const TopStreamsCollege = () => {
     }
     window.addEventListener("resize", Getsizewindows);
     Getsizewindows();
+
+    return () => {
+      window.removeEventListener("resize", Getsizewindows);
+    };
   }, []);
 
   return (
-    <div className="flex justify-center dark:bg-gray-900">
+    <div className="flex justify-center">
       <div className="w-[1300px]">
-        <h1 className="font-semibold text-3xl mt-3 px-4 dark:text-white">
-          Top College
-        </h1>
-        <p className="ml-5 mb-4 dark:text-white">Choose your Dream College</p>
+        <h1 className="font-semibold text-3xl mt-3 px-4">Top College</h1>
+        <p className="ml-5 mb-4">Choose your Dream College</p>
         <div className="flex gap-2 flex-wrap px-4">
           {TopSreamsList.map((item, index) => {
             return (
@@ -42,7 +46,7 @@ const TopStreamsCollege = () => {
             );
           })}
         </div>
-        <div className="grid sm:grid-cols-2 grid-flow-col-1 md:grid-cols-2 lg:grid-cols-3  h-1/2 gap-x-4 px-4">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 h-1/2 gap-x-4 px-4">
           {TopStreamsCollegeData[currentData]
             .slice(0, itemNumber)
             .map((item, index) => (
@@ -55,11 +59,18 @@ const TopStreamsCollege = () => {
 };
 
 const ItemButton = ({ data, updateData, activeid }) => {
+  const { darkMode } = useThemeContext();
   return (
     <button
       onClick={() => updateData(data.id)}
-      className={`text-sm border px-2 py-1 rounded-md dark:text-white ${
-        data.id === activeid ? " bg-blue-500" : "bg-gray-800"
+      className={`text-sm border px-2 py-1 rounded-md ${
+        data.id === activeid
+          ? darkMode
+            ? "bg-blue-600"
+            : "bg-blue-500"
+          : darkMode
+          ? Color.dark.card
+          : Color.light.card
       }`}
     >
       <h2 className="flex">
@@ -71,34 +82,42 @@ const ItemButton = ({ data, updateData, activeid }) => {
 
 const ItemList = ({ data }) => {
   const navigate = useNavigate();
+  const { darkMode } = useThemeContext();
   const HandleRoute = () => {
     navigate(`/collegedetail/${encodeURIComponent(data.url)}`);
   };
+
   return (
     <div
-      className=" flex flex-col  justify-around  mt-3 border rounded-md hover:shadow-xl mb-2 cursor-pointer dark:bg-gray-800 text-white"
+      className={`flex flex-col justify-between mt-3 border rounded-lg hover:shadow-xl mb-2 cursor-pointer ${
+        darkMode ? Color.dark.card : Color.light.card
+      }`}
       onClick={HandleRoute}
     >
       <div className="flex mb-5 py-3">
-        <div className="flex">
-          <div className="border-black rounded-full overflow-hidden ml-4 items-center">
-            <img
-              src={`https://static.zollege.in/public/college_data/images/logos/${data.logo}?tr=h-56,w-56,c-force`}
-              className="h-[56px] w-[56px]"
-            />
-          </div>
-          <div className="ml-4">
-            <h1 className="font-semibold text-lg">{data.name}</h1>
-            <p className="flex opacity-70 gap-2 items-center flex-grow">
-              <MdLocationOn /> {data.city}, {data.state}
-            </p>
-          </div>
+        <div className="border-black rounded-full overflow-hidden ml-4">
+          <img
+            src={`https://static.zollege.in/public/college_data/images/logos/${data.logo}?tr=h-56,w-56,c-force`}
+            className="h-[56px] w-[56px]"
+          />
+        </div>
+        <div className="ml-4">
+          <h1 className="font-semibold text-lg">{data.name}</h1>
+          <p className="flex opacity-70 gap-2 items-center flex-grow">
+            <MdLocationOn /> {data.city}, {data.state}
+          </p>
         </div>
       </div>
-      <div className="text-white flex items-end flex-grow justify-between dark:bg-gray-700">
+      <div
+        className={`flex justify-between rounded-lg ${
+          darkMode ? Color.dark.card2 : Color.light.card2
+        }`}
+      >
         {data.fees.map((fee, index) => (
-          <div key={index} className="p-2">
-            <p>{fee.short_form}</p>
+          <div key={index} className="p-2" style={{ width: "50%" }}>
+            <p className="overflow-hidden whitespace-nowrap overflow-ellipsis">
+              {fee.short_form}
+            </p>
             <p>
               ₹{fee.fee} {fee.type}
             </p>
@@ -108,4 +127,5 @@ const ItemList = ({ data }) => {
     </div>
   );
 };
+
 export default TopStreamsCollege;

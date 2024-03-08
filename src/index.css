@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .Spinner {
   width: 50px;
   height: 50px;
@@ -16,7 +26,7 @@
   }
 }
 
-.cdcms_college_highlights {
+.Dark .cdcms_college_highlights {
   font-family: Arial, sans-serif;
   background: rgb(31, 41, 55);
   padding: 20px;
@@ -24,13 +34,27 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: justify;
+  color: white;
 }
-
-.cdcms_college_highlights > div {
+.Light .cdcms_college_highlights {
+  font-family: Arial, sans-serif;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: justify;
+  color:#000
+}
+.Dark .cdcms_college_highlights > div {
   overflow-x: auto;
   background: rgb(31, 41, 55);
 }
 
+.Light .cdcms_college_highlights > div {
+  overflow-x: auto;
+  background: white;
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
   .cdcms_college_highlights {
@@ -44,25 +68,29 @@
 }
 
 .cdcms_college_highlights h2 {
-  color: white;
   font-size: 24px;
   margin-top: 30px;
   font-weight: bold;
 }
 .cdcms_college_highlights h3 {
-  color: white;
   font-size: 20px;
   margin-top: 20px;
   font-weight: bold;
 }
 
-.cdcms_college_highlights table {
+.Dark .cdcms_college_highlights table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: rgb(31, 41, 55);
 }
 
+.Light  .cdcms_college_highlights table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
 .cdcms_college_highlights th,
 .cdcms_college_highlights td {
   padding: 8px 12px;
@@ -121,9 +149,8 @@
 /* Style strong elements */
 .cdcms_section1 strong {
   font-weight: normal;
-  color: white;
 }
-
+ 
 /* Style links */
 .cdcms_section1 a {
   color: #007bff;
@@ -163,8 +190,15 @@
   font-style: italic;
 }
 
-.cdcms_section2 .cdcms_section2 {
+.Dark .cdcms_section2 .cdcms_section2 {
   background: rgb(31, 41, 55);
+  border: 1px solid rgb(204, 204, 204);
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.Light  .cdcms_section2 .cdcms_section2 {
+  background:white;
   border: 1px solid rgb(204, 204, 204);
   padding: 5px 10px;
   text-align: center;
@@ -187,12 +221,17 @@
   text-align: justify;
 }
 
-.cdcms_section2 div {
+.Dark .cdcms_section2 div {
   background: rgb(31, 41, 55);
   border: 1px solid #ccc;
   padding: 5px 10px;
 }
 
+.Light  .cdcms_section2 div {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+}
 .cdcms_section2 a {
   text-decoration: none;
 }

@@ -1,6 +1,8 @@
 import CourseData from "../../Data/CourseData";
 import { BsDot } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useThemeContext } from "../../ContextApi/ThemeContext";
+import Color from "../../Theme/Color";
 
 const SelectCourse = () => {
   return (
@@ -19,9 +21,12 @@ const SelectCourse = () => {
 
 const ItemButton = ({ data }) => {
   const navigate = useNavigate(); // Call useNavigate inside the functional component
+  const { darkMode } = useThemeContext();
   return (
     <button
-      className="text-sm border px-2 py-1 rounded-md hover:bg-blue-500  dark:bg-gray-800 text-gray-800 dark:text-white"
+      className={`text-sm border px-2 py-1 rounded-md ${
+        darkMode ? Color.dark.card : Color.light.card
+      } ${darkMode ? Color.dark.hoverbg : Color.light.hoverbg}`}
       onClick={() => navigate(`/course/${encodeURIComponent(data.link)}`)}
     >
       <h2 className="flex">

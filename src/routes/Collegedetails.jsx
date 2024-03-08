@@ -5,12 +5,14 @@ import { Apiurl } from "../Data/ApiData";
 import { MdLocationOn } from "react-icons/md";
 import Courses from "../Component/Collegedetails/Courses";
 import Spinner from "../component/Spinner";
+import { useThemeContext } from "../ContextApi/ThemeContext";
 
 const CollegeDetail = () => {
   const { id } = useParams();
   const [collegeData, setCollegeData] = useState(null);
   const [error, setError] = useState(false);
-
+  const {darkMode} = useThemeContext()
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -29,7 +31,7 @@ const CollegeDetail = () => {
   }, [id]);
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div>
       <div className="container mx-auto mt-10  py-8 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
         {error && (
           <p className="text-red-500">There was an error fetching the data.</p>
@@ -90,12 +92,14 @@ const CollegeDetail = () => {
               ))}
             </div>
             <Courses data={collegeData.course_data} />
-            <div
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHTML(collegeData.article.description),
-              }}
-              className="cdcms_college_highlights "
-            ></div>
+            <div className={`${darkMode ? "Dark" : "Light"}`}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHTML(collegeData.article.description),
+                }}
+                className="cdcms_college_highlights "
+              ></div>
+            </div>
           </>
         ) : (
           <Spinner />

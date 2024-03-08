@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SearchBox from "../../Container/Home/SearchBox";
 import { IoSearchOutline } from "react-icons/io5";
+import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
+import { useThemeContext } from "../../ContextApi/ThemeContext";
 
 const Header = () => {
   const navigate = useNavigate();
-  const handleNavigation = (route) => {
-    navigate(route);
-  };
-
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false); // this is for visibility of search bar or not
+  const [isMobile, setIsMobile] = useState(false);
+  const [showBurger, setShowBurger] = useState(false); // this is for rednder display comes on mobile
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // To track menu bar is open or not
 
+  const {toggleDarkMode} = useThemeContext()
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
       if (scrollTop > 70) {
-        // You can adjust this value as needed
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -24,7 +24,7 @@ const Header = () => {
     };
 
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust the breakpoint as needed
+      setIsMobile(window.innerWidth < 768);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -43,26 +43,49 @@ const Header = () => {
     navigate("/search");
   };
 
+  const handleNavigation = (route) => {
+    setShowBurger(false); // Close the hamburger menu
+    setIsMenuOpen(false); // Close the menu overlay
+    navigate(route);
+  };
+
+  const handleMenuToggle = () => {
+    setShowBurger(!showBurger); // Toggle the hamburger menu
+    setIsMenuOpen(!isMenuOpen); // Toggle the menu overlay
+  };
+
   return (
     <header
-      className={`flex justify-center mb-10 items-center fixed text-white bg-black top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "h-[50px] bg-black shadow-md" : "h-[70px] bg-transparent"
+      className={`flex justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "h-[50px] bg-white shadow-md" : "h-[70px] bg-transparent"
       }`}
     >
-      <div className="w-[1300px]">
+      {/* Overlay for Hamburger Menu */}
+      {isMobile && isMenuOpen && (
+        <div
+          className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
+          onClick={handleMenuToggle}
+        ></div>
+      )}
+
+      <div className="w-[1300px] relative">
         <div className="flex justify-between mb-3">
           <div className="flex items-center">
             <NavLink to="/" className="text-black text-2xl font-bold">
               <h2>MyCollege</h2>
             </NavLink>
+            <div>
+              <button onClick={()=>toggleDarkMode(true)} className="text-black">
+                dark
+              </button>
+              <button onClick={()=>toggleDarkMode(false)} className="text-black">
+                light
+              </button>
+            </div>
           </div>
 
           {/* Search bar */}
-          {!isMobile && (
-            <div>
-              <SearchBox />
-            </div>
-          )}
+          {!isMobile && <SearchBox />}
 
           {/* Search for mobile application */}
           {isMobile && (
@@ -74,6 +97,14 @@ const Header = () => {
               <p> Search </p>
             </div>
           )}
+
+          {/* Hamburger Icon */}
+          {isMobile && (
+            <div className="flex justify-center items-center">
+              <GiHamburgerMenu className="h-5 w-8" onClick={handleMenuToggle} />
+            </div>
+          )}
+
           {/* Navbar div */}
           {!isMobile && (
             <nav className="flex items-center">
@@ -115,6 +146,52 @@ const Header = () => {
           )}
         </div>
       </div>
+
+      {/* Hamburger Menu */}
+      {showBurger && (
+        <div className="h-screen w-[150px] fixed top-0 right-0 bg-red-600  flex flex-col">
+          <GiCrossMark
+            onClick={handleMenuToggle}
+            className="absolute top-2 right-7"
+          />
+          <nav className="mt-5 ml-5">
+            <ul className="flex flex-col space-y-3">
+              <li>
+                <button
+                  onClick={() => handleNavigation("/")}
+                  className="hover:text-gray-300"
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigation("/about")}
+                  className="hover:text-gray-300"
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigation("/contact")}
+                  className="hover:text-gray-300"
+                >
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigation("/department")}
+                  className="hover:text-gray-300"
+                >
+                  Department
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

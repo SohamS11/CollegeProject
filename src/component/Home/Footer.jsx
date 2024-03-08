@@ -6,9 +6,12 @@ import twitterIcon from "../../assets/social-icon/twitter-icon.svg";
 import githubIcon from "../../assets/social-icon/github-icon.svg";
 import FooterData from "../../Data/FooterData";
 import { useParams, useNavigate } from "react-router-dom";
+import { useThemeContext } from "../../ContextApi/ThemeContext";
+import Color from "../../Theme/Color";
 
 const Footer = () => {
   const [itemNumber, setItemNumber] = useState(5);
+  const { darkMode } = useThemeContext();
 
   useEffect(() => {
     function Getsizewindows() {
@@ -23,7 +26,11 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-gray-800 p-5 text-white mt-4">
+    <div
+      className={`p-5 mt-4 ${
+        darkMode ? Color.dark.footer : Color.light.footer
+      }`}
+    >
       <div className="flex justify-around">
         {FooterData.slice(0, itemNumber).map((item, index) => {
           return <FooterItem data={item} key={index} />;

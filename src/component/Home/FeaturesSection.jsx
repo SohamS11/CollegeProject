@@ -1,55 +1,57 @@
 import React from "react";
 import { CheckCircle } from "feather-icons-react";
+import { useThemeContext } from "../../ContextApi/ThemeContext";
+import Color from "../../Theme/Color";
 
 const FeaturesSection = () => {
+  const { darkMode } = useThemeContext();
+
+  // Feature data array
+  const featureData = [
+    {
+      title: "Write a Review",
+      description: "Review colleges.",
+    },
+    {
+      title: "Search Exams",
+      description: "Search for exams.",
+    },
+    {
+      title: "Set Goals",
+      description: "Set exam timetables.",
+    },
+    {
+      title: "Internships",
+      description: "Find internships.",
+    },
+  ];
+
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 py-4 md:py-6 rounded-bl-3xl rounded-br-3xl">
+    <section className="py-4 md:py-6 rounded-bl-3xl rounded-br-3xl">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-gray-800 dark:text-white">Key Features</h2>
+        <h2 className="text-3xl lg:text-4xl font-bold mb-6 md:mb-8">
+          Key Features
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-center items-start">
-          {/* Feature 1 */}
-          <div className="flex items-center bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
-            <div className="bg-blue-500 dark:bg-blue-600 rounded-full p-4 mr-4 flex-shrink-0">
-              <CheckCircle className="text-white" size={24} />
+          {/* Feature Cards */}
+          {featureData.map((feature, index) => (
+            <div
+              key={index}
+              className={`flex items-center ${
+                darkMode ? Color.dark.card : Color.light.card
+              } rounded-xl p-4 shadow-md`}
+            >
+              <div className="bg-blue-500 dark:bg-blue-600 rounded-full p-4 mr-4 flex-shrink-0">
+                <CheckCircle className="text-white" size={24} />
+              </div>
+              <div className="flex flex-col items-start">
+                <h3 className="text-xl lg:text-2xl font-semibold mb-2">
+                  {feature.title}
+                </h3>
+                <p className=" dark:text-gray-600">{feature.description}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">Write a Review</h3>
-              <p className="text-gray-600 dark:text-gray-400">Review colleges.</p>
-            </div>
-          </div>
-
-          {/* Feature 2 */}
-          <div className="flex items-center bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
-            <div className="bg-blue-500 dark:bg-blue-600 rounded-full p-4 mr-4 flex-shrink-0">
-              <CheckCircle className="text-white" size={24} />
-            </div>
-            <div>
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">Search Exams</h3>
-              <p className="text-gray-600 dark:text-gray-400">Search for exams.</p>
-            </div>
-          </div>
-
-          {/* Feature 3 */}
-          <div className="flex items-center bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
-            <div className="bg-blue-500 dark:bg-blue-600 rounded-full p-4 mr-4 flex-shrink-0">
-              <CheckCircle className="text-white" size={24} />
-            </div>
-            <div>
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">Set Goals</h3>
-              <p className="text-gray-600 dark:text-gray-400">Set exam timetables.</p>
-            </div>
-          </div>
-
-          {/* Feature 4 */}
-          <div className="flex items-center bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
-            <div className="bg-blue-500 dark:bg-blue-600 rounded-full p-4 mr-4 flex-shrink-0">
-              <CheckCircle className="text-white" size={24} />
-            </div>
-            <div>
-              <h3 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">Internships</h3>
-              <p className="text-gray-600 dark:text-gray-400">Find internships.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

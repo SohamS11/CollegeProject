@@ -13,14 +13,19 @@ import {
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
 import Course from "./Routes/Course";
+import { useThemeContext } from "./ContextApi/ThemeContext";
+import Color from "./Theme/Color";
 // import Signup from "./routes/Signup";
 
-const Layout = ({ children }) => (
-  <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
-    <Header />
-    {children}
-  </div>
-);
+const Layout = ({ children }) => {
+  const { darkMode } = useThemeContext();
+  return (
+    <div className={darkMode ? Color.dark.mainbg : Color.light.mainbg}>
+      <Header />
+      {children}
+    </div>
+  );
+};
 
 const App = () => {
   return (

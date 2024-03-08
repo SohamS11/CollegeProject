@@ -2,12 +2,14 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Apiurl } from "../Data/ApiData";
+import { useThemeContext } from "../ContextApi/ThemeContext";
 
 const Course = () => {
   const { id } = useParams();
   const [coursesData, setCoursesData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const {darkMode} = useThemeContext()
 
   useEffect(() => {
     async function fetchData() {
@@ -39,7 +41,7 @@ const Course = () => {
     });
   }
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div>
       <div className="container mx-auto px-4 py-8 mt-10 lg:w-[1300px]  md:w-[786px] sm:w-[640px]">
         {loading && <p>Loading...</p>}
         {error && <p>Error fetching data.</p>}
@@ -51,12 +53,14 @@ const Course = () => {
                 {coursesData.course_data.course_tag}
               </h1>
             </div>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHTML(coursesData?.article?.description),
-              }}
-              className="cdcms_college_highlights"
-            ></div>
+            <div className={`${darkMode ? "Dark" : "Light"}`}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHTML(coursesData?.article?.description),
+                }}
+                className="cdcms_college_highlights"
+              ></div>
+            </div>
           </div>
         )}
       </div>

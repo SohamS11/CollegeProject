@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Apiurl } from "../Data/ApiData";
 import { useNavigate } from "react-router-dom";
+import { useThemeContext } from "../ContextApi/ThemeContext";
+import Color from "../Theme/Color";
 
 const FilterComponent = ({ Id }) => {
   const [filterData, setFilterData] = useState({});
   const [selectedFilterData, setSelectedFilterData] = useState({});
+  const { darkMode } = useThemeContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,7 +93,11 @@ const FilterComponent = ({ Id }) => {
   };
 
   return (
-    <div className="border border-gray-700 rounded-xl px-4 mt-4 bg-gray-800 text-white overflow-y-hidden ">
+    <div
+      className={`border border-gray-700 rounded-xl px-4 mt-4 scrollbar-hide overflow-auto ${
+        darkMode ? Color.dark.filterbox : Color.light.filterbox
+      }`}
+    >
       {Object.entries(filterData).map(([key, value]) => (
         <FilterItem
           key={key}

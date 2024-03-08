@@ -1,4 +1,3 @@
-import React from "react";
 import HeroSection from "../component/Home/Hero_Section";
 import FeaturesSection from "../component/Home/FeaturesSection";
 import Footer from "../Component/Home/Footer";
@@ -6,10 +5,13 @@ import TopCities from "../component/Home/TopCities";
 import Streams from "../Component/Home/Streams";
 import TopStreamsCollege from "../Component/Home/TopStreamsCollege";
 import SelectCourse from "../Component/Home/SelectCourse";
+import { useThemeContext } from "../ContextApi/ThemeContext";
+import Color from "../Theme/Color";
 
 const Home = () => {
+  const { darkMode } = useThemeContext();
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div>
       <HeroSection />
       <FeaturesSection />
       <TopCities />

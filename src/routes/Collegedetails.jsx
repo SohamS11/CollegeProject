@@ -6,13 +6,14 @@ import { MdLocationOn } from "react-icons/md";
 import Courses from "../Component/Collegedetails/Courses";
 import Spinner from "../component/Spinner";
 import { useThemeContext } from "../ContextApi/ThemeContext";
+import Color from "../Theme/Color";
 
 const CollegeDetail = () => {
   const { id } = useParams();
   const [collegeData, setCollegeData] = useState(null);
   const [error, setError] = useState(false);
-  const {darkMode} = useThemeContext()
-  
+  const { darkMode } = useThemeContext();
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -92,7 +93,7 @@ const CollegeDetail = () => {
               ))}
             </div>
             <Courses data={collegeData.course_data} />
-            <div className={`${darkMode ? "Dark" : "Light"}`}>
+            <div className={`${darkMode ? Color.dark.card : Color.light.card}`}>
               <div
                 dangerouslySetInnerHTML={{
                   __html: sanitizeHTML(collegeData.article.description),

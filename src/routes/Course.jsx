@@ -9,7 +9,7 @@ const Course = () => {
   const [coursesData, setCoursesData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const {darkMode} = useThemeContext()
+  const { darkMode } = useThemeContext();
 
   useEffect(() => {
     async function fetchData() {

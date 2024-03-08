@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useThemeContext } from "./../../ContextApi/ThemeContext";
 import { kebabCase } from "lodash";

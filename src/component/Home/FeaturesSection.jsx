@@ -1,4 +1,3 @@
-import React from "react";
 import { CheckCircle } from "feather-icons-react";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
 import Color from "../../Theme/Color";

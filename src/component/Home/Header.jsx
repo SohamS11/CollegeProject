@@ -12,10 +12,11 @@ const Header = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showBurger, setShowBurger] = useState(false); // this is for render display on mobile
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // To track if menu bar is open or not
+  const [showBurger, setShowBurger] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { toggleDarkMode, darkMode } = useThemeContext();
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +31,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
-    // Initial check for mobile screen
     handleResize();
 
     return () => {
@@ -44,19 +44,32 @@ const Header = () => {
   };
 
   const handleNavigation = (route) => {
-    setShowBurger(false); // Close the hamburger menu
-    setIsMenuOpen(false); // Close the menu overlay
+    setShowBurger(false);
+    setIsMenuOpen(false);
     navigate(route);
   };
 
   const handleMenuToggle = () => {
-    setShowBurger(!showBurger); // Toggle the hamburger menu
-    setIsMenuOpen(!isMenuOpen); // Toggle the menu overlay
+    setShowBurger(!showBurger);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const handleModeToggle = () => {
     setIsDarkMode(!isDarkMode);
     toggleDarkMode(!isDarkMode);
+  };
+
+  const handleCategorySelect = (category) => {
+    setIsHovered(false);
+    navigate(`/newz/${category}`);
+  };
+
+  const handleHover = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
   };
 
   return (
@@ -67,7 +80,6 @@ const Header = () => {
           : "h-[70px] " + Color[isDarkMode ? "dark" : "light"].header
       }`}
     >
-      {/* Overlay for Hamburger Menu */}
       <div className="w-full max-w-[1300px] relative">
         <div className="flex justify-between items-center px-4 md:px-0">
           <div className="flex items-center">
@@ -80,17 +92,13 @@ const Header = () => {
               <h2>MyCollege</h2>
             </NavLink>
           </div>
-          {/* Overlay for Hamburger Menu */}
           {isMobile && isMenuOpen && (
             <div
               className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
               onClick={handleMenuToggle}
             ></div>
           )}
-          {/* Search bar */}
           {!isMobile && <SearchBox />}
-
-          {/* Search for mobile application */}
           {isMobile && (
             <div
               className={`flex gap-2 p-2${
@@ -102,19 +110,18 @@ const Header = () => {
               <p className=""> Search </p>
             </div>
           )}
-
-          {/* Hamburger Icon */}
           {isMobile && (
             <div
               className={`mx-3 flex justify-center items-center ${
                 darkMode ? "text-white" : "text-black"
               }`}
             >
-              <GiHamburgerMenu className="h-5 w-8" onClick={handleMenuToggle} />
+              <GiHamburgerMenu
+                className="h-5 w-8"
+                onClick={handleMenuToggle}
+              />
             </div>
           )}
-
-          {/* Navbar div */}
           {!isMobile && (
             <nav className="flex items-center">
               <ul className="flex gap-x-4 items-center justify-center">
@@ -143,20 +150,41 @@ const Header = () => {
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={() => handleNavigation("/department")}
-                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                  <div
+                    className="relative"
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    Department
-                  </button>
+                    <button
+                      className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                    >
+                      News
+                    </button>
+                    {isHovered && (
+                      <div className="absolute top-full bg-white w-32 py-2 shadow-lg rounded">
+                        <button
+                          onClick={() => handleCategorySelect("technology")}
+                          className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                        >
+                          Technology
+                        </button>
+                        <button
+                          onClick={() => handleCategorySelect("sport")}
+                          className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                        >
+                          Sport
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </li>
+              
               </ul>
             </nav>
           )}
         </div>
       </div>
 
-      {/* Hamburger Menu */}
       {showBurger && (
         <div
           className={`h-screen w-full max-w-[150px] fixed top-0 right-0 ${`mx-3 ${

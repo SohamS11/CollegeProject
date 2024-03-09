@@ -70,7 +70,10 @@ const App = () => {
           path="*"
           element={
             <Layout>
-              <h1>not found bro </h1>
+              <div className="flex w-full h-screen justify-center items-center">
+               <h1 className="text-4xl font-bold "> Page not Found Baby  </h1>
+              </div>
+             
             </Layout>
           }
         />

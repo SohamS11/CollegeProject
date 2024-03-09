@@ -123,7 +123,7 @@ const sanitizeHTML = (htmlString) => {
   );
   htmlString = htmlString.replace(
     /style="background: #eee; border: 1px solid #ccc; padding: 5px 10px;"/gi,
-    'style="background:rgb(31, 41, 55); border: 1px solid #ccc; padding: 5px 10px;"'
+    ''
   );
   return htmlString;
 };

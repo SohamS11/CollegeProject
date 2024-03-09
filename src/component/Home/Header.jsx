@@ -15,7 +15,6 @@ const Header = () => {
   const [showBurger, setShowBurger] = useState(false); // this is for render display on mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false); // To track if menu bar is open or not
   const { toggleDarkMode, darkMode } = useThemeContext();
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,11 +51,6 @@ const Header = () => {
   const handleMenuToggle = () => {
     setShowBurger(!showBurger); // Toggle the hamburger menu
     setIsMenuOpen(!isMenuOpen); // Toggle the menu overlay
-  };
-
-  const handleModeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-    toggleDarkMode(!isDarkMode);
   };
 
   return (
@@ -192,7 +186,7 @@ const Header = () => {
           onClick={toggleDarkMode}
           className={`mx-3 ${darkMode ? "text-white" : "text-black"}`}
         >
-          {isDarkMode ? <CiLight size={30} /> : <MdDarkMode size={30} />}
+          {darkMode ? <CiLight size={30} /> : <MdDarkMode size={30} />}
         </button>
       </div>
     </header>

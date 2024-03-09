@@ -6,7 +6,10 @@ const ContactUs = () => {
       <h2 className="text-3xl font-semibold mb-6">Contact Us</h2>
       <form>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-600"
+          >
             Your Name
           </label>
           <input
@@ -19,7 +22,10 @@ const ContactUs = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-600"
+          >
             Your Email
           </label>
           <input
@@ -32,7 +38,10 @@ const ContactUs = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="message" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-gray-600"
+          >
             Message
           </label>
           <textarea

@@ -5,20 +5,27 @@ import {
   ContactUs,
   Home,
   Search,
-  Department,
+  Register,
   RoadmapDropdown,
   CollegeLists,
+  Login,
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
 import Course from "./Routes/Course";
+import { useThemeContext } from "./ContextApi/ThemeContext";
+import Color from "./Theme/Color";
+// import Signup from "./routes/Signup";
 
-const Layout = ({ children }) => (
-  <>
-    <Header />
-    {children}
-  </>
-);
+const Layout = ({ children }) => {
+  const { darkMode } = useThemeContext();
+  return (
+    <div className={darkMode ? Color.dark.mainbg : Color.light.mainbg}>
+      <Header />
+      {children}
+    </div>
+  );
+};
 
 const App = () => {
   return (
@@ -48,22 +55,8 @@ const App = () => {
             </Layout>
           }
         />
-        <Route
-          path="/department"
-          element={
-            <Layout>
-              <Department />
-            </Layout>
-          }
-        />
-        <Route
-          path="/allroadmap/*"
-          element={
-            <Layout>
-              <RoadmapDropdown />
-            </Layout>
-          }
-        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="collegeList/:id"
           element={
@@ -77,7 +70,10 @@ const App = () => {
           path="*"
           element={
             <Layout>
-              <h1>not found bro </h1>
+              <div className="flex w-full h-screen justify-center items-center">
+               <h1 className="text-4xl font-bold "> Page not Found Baby  </h1>
+              </div>
+             
             </Layout>
           }
         />

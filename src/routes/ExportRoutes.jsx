@@ -1,9 +1,19 @@
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
+import Register from "../routes/Register";
+import Login from "../routes/Login";
 import Home from "./Home";
 import Search from "./Search";
-import Department from "./Department";
 import RoadmapDropdown from "./RoadmapDropdown";
 import CollegeLists from "./CollegeLists";
 
-export { AboutUs, ContactUs, Home, Search, Department, RoadmapDropdown , CollegeLists};
+export {
+  AboutUs,
+  ContactUs,
+  Register,
+  Login,
+  Home,
+  Search,
+  RoadmapDropdown,
+  CollegeLists,
+};

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Apiurl } from "../Data/ApiData";
 import { useNavigate } from "react-router-dom";
+import { useThemeContext } from "../ContextApi/ThemeContext";
+import Color from "../Theme/Color";
 
 const FilterComponent = ({ Id }) => {
   const [filterData, setFilterData] = useState({});
   const [selectedFilterData, setSelectedFilterData] = useState({});
+  const { darkMode } = useThemeContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,7 +93,11 @@ const FilterComponent = ({ Id }) => {
   };
 
   return (
-    <div className="border border-gray-300 rounded p-4">
+    <div
+      className={`border border-gray-700 rounded-xl px-4 mt-4 scrollbar-hide overflow-auto ${
+        darkMode ? Color.dark.filterbox : Color.light.filterbox
+      }`}
+    >
       {Object.entries(filterData).map(([key, value]) => (
         <FilterItem
           key={key}
@@ -114,20 +121,18 @@ const FilterItem = ({
     <div className="mb-6">
       <div>
         <h2 className="mb-4 text-lg font-semibold">{data.text}</h2>
-        <input
-          className="border border-gray-300 rounded-3xl px-4 py-2 w-full focus:outline-none focus:border-blue-500"
-          type="text"
-          placeholder="Search"
-        />
       </div>
-      <div className="mt-4 max-h-40 overflow-y-auto">
+      <div
+        className="mt-4 max-h-40 overflow-y-auto"
+        style={{ paddingRight: "16px", marginBottom: "-16px" }}
+      >
         {data.values.map((item, index) => (
           <div key={index} className="mb-2">
             <label className="flex items-center cursor-pointer">
               <input
                 type="checkbox"
                 value={item.value}
-                className="form-checkbox h-5 w-5 text-blue-600 mr-2 border-gray-300 rounded focus:ring-blue-500"
+                className="form-checkbox h-5 w-5 text-blue-400 mr-2 border-gray-300 rounded focus:ring-blue-500"
                 checked={
                   selectedFilterData[filterName] &&
                   selectedFilterData[filterName].includes(item.value)
@@ -136,7 +141,7 @@ const FilterItem = ({
               />
               <span className="text-sm">
                 {item.text}{" "}
-                <span className=" text-blue-600">({item.count})</span>{" "}
+                <span className="text-blue-400">({item.count})</span>{" "}
               </span>
             </label>
           </div>

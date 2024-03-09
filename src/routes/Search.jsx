@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Apiurl } from "../Data/ApiData";
 import { debounce } from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { useThemeContext } from "../ContextApi/ThemeContext";
+import Color from "../Theme/Color";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,6 +14,7 @@ const Search = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchEmpty, setSearchEmpty] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { darkMode } = useThemeContext();
 
   const navigate = useNavigate();
   const HandleRoute = (route) => {
@@ -58,7 +61,11 @@ const Search = () => {
 
   return (
     <>
-      <div className="flex justify-center items-start  h-screen px-8 py-5">
+      <div
+        className={`flex justify-center items-start  h-screen px-8 py-5 ${
+          darkMode ? Color.dark.mainbg : Color.light.mainbg
+        }`}
+      >
         <div className="mt-4 mx-auto w-full h-96 px-6 py-4 ">
           <div className="relative">
             <input
@@ -67,7 +74,7 @@ const Search = () => {
               value={searchQuery}
               autoFocus
               onChange={handleSearch}
-              className="w-full rounded-lg bg-gray-200 text-gray-700 leading-tight focus:outline-none py-3 px-3 pr-20"
+              className="w-full rounded-lg bg-white text-gray-700 leading-tight focus:outline-none py-3 px-3 pr-20"
             />
             <div className="flex gap-3">
               {searchQuery && (
@@ -88,7 +95,7 @@ const Search = () => {
           {showSearch && (
             <>
               {loading && (
-                <div className="flex justify-center items-center text-black font-medium mt-5">
+                <div className="flex justify-center items-center font-medium mt-5">
                   <p>Loading...</p>
                 </div>
               )}
@@ -103,7 +110,7 @@ const Search = () => {
               )}
 
               {!loading && searchEmpty && (
-                <div className="flex justify-center items-center text-black font-medium mt-5">
+                <div className="flex justify-center items-center font-medium mt-5">
                   <p>No results found</p>
                 </div>
               )}
@@ -117,6 +124,7 @@ const Search = () => {
 
 const SearchItem = ({ item }) => {
   const navigate = useNavigate();
+  const { darkMode } = useThemeContext();
   function HandleRoute() {
     if (item.item_type === "college") {
       navigate(`/collegedetail/${encodeURIComponent(item.url)}`);
@@ -129,25 +137,27 @@ const SearchItem = ({ item }) => {
     }
   }
   return (
-    <div
-      className="flex justify-between items-center gap-2 mx-2 py-1 cursor-pointer"
-      onClick={() => HandleRoute()}
-    >
-      <div className="flex gap-3 justify-start items-center py-2">
-        <img
-          src={
-            item.logo
-              ? item.logo
-              : "https://th.bing.com/th/id/OIP.GnqZiwU7k5f_kRYkw8FNNwHaF3?w=277&h=220&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-          }
-          className="w-14 h-14"
-        />
-        <div>
-          <h1>{item.name}</h1>
+    <div className={`${darkMode ? Color.dark.card : Color.light.card}`}>
+      <div
+        className="flex justify-between items-center gap-2 mx-2 py-1 cursor-pointer"
+        onClick={() => HandleRoute()}
+      >
+        <div className="flex gap-3 justify-start items-center py-2">
+          <img
+            src={
+              item.logo
+                ? item.logo
+                : "https://th.bing.com/th/id/OIP.GnqZiwU7k5f_kRYkw8FNNwHaF3?w=277&h=220&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            }
+            className="w-14 h-14"
+          />
+          <div>
+            <h1>{item.name}</h1>
+          </div>
         </div>
-      </div>
-      <div>
-        <h1>{item.item_type}</h1>
+        <div>
+          <h1>{item.item_type}</h1>
+        </div>
       </div>
     </div>
   );

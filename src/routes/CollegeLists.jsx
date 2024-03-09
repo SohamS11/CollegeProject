@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { Apiurl } from "../Data/ApiData";
 import Spinner from "../component/Spinner";
 import FilterComponent from "./FilterComponent";
-import "./Sidebar.css";
+import { useThemeContext } from "../ContextApi/ThemeContext";
+import Color from "../Theme/Color";
 
 const CollegeList = () => {
   const { id } = useParams();
@@ -16,6 +17,8 @@ const CollegeList = () => {
   const [stop, setStop] = useState(true);
   const collegeListContainerRef = useRef(null);
   const prevScrollY = useRef(0);
+  const { darkMode } = useThemeContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -33,7 +36,8 @@ const CollegeList = () => {
         return;
       }
       prevScrollY.current = currentScrollY;
-      const { scrollTop, clientHeight, scrollHeight } = collegeListContainerRef.current;
+      const { scrollTop, clientHeight, scrollHeight } =
+        collegeListContainerRef.current;
       if (scrollHeight - scrollTop <= clientHeight) {
         if (!loading) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
@@ -76,24 +80,32 @@ const CollegeList = () => {
     }
   };
 
-  const navigate = useNavigate();
-
   const handleRoute = (url) => {
     navigate(`/collegedetail/${encodeURIComponent(url)}`);
   };
 
   return (
-    <div className="container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex" >
-      <div className="w-1/4" style={{ position: 'sticky', top: 0, height: 'calc(100vh - 50px)', overflowY: 'auto' }}>
+    <div
+      className={`container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex ${
+        darkMode ? Color.dark.mainbg : Color.light.mainbg
+      }`}
+    >
+      <div
+        className="w-1/4"
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "calc(100vh - 30px)",
+          overflowY: "auto",
+        }}
+      >
         <FilterComponent Id={id} />
       </div>
       <div className="w-3/4 overflow-y-auto" ref={collegeListContainerRef}>
         <h1 className="text-2xl font-bold mb-4 align-middle">{title}</h1>
         {error ? (
           <div className="h-screen flex flex-col justify-center items-center">
-            <h1 className="font-semibold">
-              There is a problem with the API
-            </h1>
+            <h1 className="font-semibold">There is a problem with the API</h1>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -117,9 +129,12 @@ const CollegeList = () => {
 };
 
 const CollegeListItem = ({ data, handleRoute }) => {
+  const { darkMode } = useThemeContext();
   return (
     <div
-      className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer"
+      className={`border rounded-lg overflow-hidden hover:shadow-lg shadow-md cursor-pointer ${
+        darkMode ? Color.dark.card : Color.light.card
+      }`}
       onClick={() => handleRoute(data.url)}
     >
       <img
@@ -150,7 +165,7 @@ const CollegeListItem = ({ data, handleRoute }) => {
           <div>
             <h3 className="font-semibold">Course Fees</h3>
             {data?.fees?.map((item, index) => (
-              <div key={index}>
+              <div key={index} className="flex items-center">
                 <span>{item.short_form}</span>
                 <span className="ml-2"> ₹{item.fee}</span>
               </div>

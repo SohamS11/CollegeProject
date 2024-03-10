@@ -1,3 +1,4 @@
+
 import React from "react";
 import { CheckCircle } from "feather-icons-react";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
@@ -9,19 +10,19 @@ const FeaturesSection = () => {
   // Feature data array
   const featureData = [
     {
-      title: "Write a Review",
-      description: "Review colleges.",
+      title: "College",
+      description: "discover best for you",
     },
     {
-      title: "Search Exams",
-      description: "Search for exams.",
+      title: "Exams",
+      description: "be ready before exams.",
     },
     {
-      title: "Set Goals",
-      description: "Set exam timetables.",
+      title: "News",
+      description: "Be Updated",
     },
     {
-      title: "Internships",
+      title: "",
       description: "Find internships.",
     },
   ];

@@ -24,7 +24,7 @@ const ItemButton = ({ data }) => {
   const { darkMode } = useThemeContext();
   return (
     <button
-      className={`text-sm border px-2 py-1 rounded-md ${
+      className={` text-sm border px-2 py-1 rounded-md ${
         darkMode ? Color.dark.card : Color.light.card
       } ${darkMode ? Color.dark.hoverbg : Color.light.hoverbg}`}
       onClick={() => navigate(`/course/${encodeURIComponent(data.link)}`)}

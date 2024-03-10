@@ -80,16 +80,16 @@ const Header = () => {
           : "h-[70px] " + Color[isDarkMode ? "dark" : "light"].header
       }`}
     >
-      <div className="w-full max-w-[1300px] relative">
+      <div className="w-full max-w-[1400px]">
         <div className="flex justify-between items-center px-4 md:px-0">
-          <div className="flex items-center">
+          <div className="flex justify-end w-[200px]">
             <NavLink
               to="/"
               className={`text-2xl font-bold ${
                 Color[isDarkMode ? "dark" : "light"].text
               }`}
             >
-              <h2>MyCollege</h2>
+              <h2 className="">MyCollege</h2>
             </NavLink>
           </div>
           {isMobile && isMenuOpen && (
@@ -128,7 +128,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/")}
-                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                    className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                   >
                     Home
                   </button>
@@ -136,7 +136,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/about")}
-                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                    className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                   >
                     About
                   </button>
@@ -144,7 +144,7 @@ const Header = () => {
                 <li>
                   <button
                     onClick={() => handleNavigation("/contact")}
-                    className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                    className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                   >
                     Contact
                   </button>
@@ -156,7 +156,7 @@ const Header = () => {
                     onMouseLeave={handleMouseLeave}
                   >
                     <button
-                      className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                      className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                     >
                       News
                     </button>
@@ -200,7 +200,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/")}
-                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                  className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                 >
                   Home
                 </button>
@@ -208,7 +208,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/about")}
-                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                  className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                 >
                   About
                 </button>
@@ -216,7 +216,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/contact")}
-                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                  className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                 >
                   Contact
                 </button>
@@ -224,7 +224,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={() => handleNavigation("/department")}
-                  className={`${Color[isDarkMode ? "dark" : "light"].text}`}
+                  className={`${Color[isDarkMode ? "dark" : "light"].text} hover:bg-gray-200 px-3 py-1 rounded-lg`}
                 >
                   Department
                 </button>

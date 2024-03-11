@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FacebookIcon from "../../assets/social-icon/facebook-icon.svg";
 import instagramIcon from "../../assets/social-icon/instagram-icon.svg";
 import linkdenIcon from "../../assets/social-icon/linkedin-icon.svg";
 import twitterIcon from "../../assets/social-icon/twitter-icon.svg";
 import githubIcon from "../../assets/social-icon/github-icon.svg";
 import FooterData from "../../Data/FooterData";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
 import Color from "../../Theme/Color";
 

@@ -6,6 +6,8 @@ import Home from "./Home";
 import Search from "./Search";
 import RoadmapDropdown from "./RoadmapDropdown";
 import CollegeLists from "./CollegeLists";
+import Newz from "../routes/Newz"; // Corrected import path
+import FetchNewz from "../routes/FetchNewz"; // Corrected import path
 
 export {
   AboutUs,
@@ -16,4 +18,6 @@ export {
   Search,
   RoadmapDropdown,
   CollegeLists,
+  Newz,
+  FetchNewz
 };

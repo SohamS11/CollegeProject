@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const SearchBox = () => {
   return (
-    <div className="mt-0 mx-auto xl:w-1/3 2xl:w-1/4 flex justify-center">
+    <div className="flex justify-center items-center flex-grow xl:w-1/3 2xl:w-1/4">
       <Link to="/search">
-        <div className="relative">
+        <div className="relative ml-24">
           <svg
             className="absolute left-3 top-3 w-5 h-5 text-gray-500"
             xmlns="http://www.w3.org/2000/svg"

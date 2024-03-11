@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Header from "./component/Home/Header";
 import {
@@ -6,16 +7,16 @@ import {
   Home,
   Search,
   Register,
-  RoadmapDropdown,
   CollegeLists,
   Login,
+  Newz,
+  FetchNewz
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
 import Course from "./Routes/Course";
 import { useThemeContext } from "./ContextApi/ThemeContext";
 import Color from "./Theme/Color";
-// import Signup from "./routes/Signup";
 
 const Layout = ({ children }) => {
   const { darkMode } = useThemeContext();
@@ -57,23 +58,30 @@ const App = () => {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+      
         <Route
-          path="collegeList/:id"
+          path="/newz/:category" // Update the route to accept category parameter
+          element={
+            <Layout>
+              <FetchNewz />
+            </Layout>
+          }
+        />
+        <Route
+          path="/collegeList/:id"
           element={
             <Layout>
               <CollegeLists />
             </Layout>
           }
         />
+    
         <Route path="/search" element={<Search />} />
         <Route
           path="*"
           element={
             <Layout>
-              <div className="flex w-full h-screen justify-center items-center">
-               <h1 className="text-4xl font-bold "> Page not Found Baby  </h1>
-              </div>
-             
+              <h1>Not found</h1>
             </Layout>
           }
         />

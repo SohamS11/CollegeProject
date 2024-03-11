@@ -147,22 +147,22 @@ const Header = () => {
                   >
                     <button
                       className={`${
-                        Color[isDarkMode ? "dark" : "light"].text
+                        darkMode ?Color.dark.text :Color.light.text
                       } hover:bg-gray-200 px-3 py-1 rounded-lg`}
                     >
                       News
                     </button>
                     {isHovered && (
-                      <div className="absolute top-full bg-white w-32 py-2 shadow-lg rounded">
+                      <div className="absolute top-full w-32 py-2 shadow-lg rounded">
                         <button
                           onClick={() => handleCategorySelect("technology")}
-                          className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                          className="block px-4 py-2 hover:bg-gray-100"
                         >
                           Technology
                         </button>
                         <button
                           onClick={() => handleCategorySelect("sport")}
-                          className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                          className="block px-4 py-2  hover:bg-gray-100"
                         >
                           Sport
                         </button>

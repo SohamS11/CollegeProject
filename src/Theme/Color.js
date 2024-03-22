@@ -7,7 +7,7 @@ const Color = {
     text: "text-gray-200", // Light text color
     hoverbg: "hover:bg-gray-700", // Dark hover background
     filterbox: "bg-gray-800", // Dark filter box
-    header: "bg-gray-900 text-gray-200", // Dark header background with light text
+    // header: "bg-blue text-gray-200", // Dark header background with light text
   },
   light: {
     mainbg: "bg-white text-gray-800", // Light background with dark text
@@ -17,7 +17,7 @@ const Color = {
     text: "text-gray-800", // Dark text color
     hoverbg: "hover:bg-blue-500", // Light hover background
     filterbox: "bg-white", // Light filter box
-    header: "bg-white text-gray-800", // Light header background with dark text
+    // header: "bg-blue text-gray-800", // Light header background with dark text
   },
 };
 

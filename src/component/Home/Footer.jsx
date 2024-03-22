@@ -27,7 +27,7 @@ const Footer = () => {
 
   return (
     <div
-      className={`p-5 mt-4 ${
+      className={`p-5 mt-20 ${
         darkMode ? Color.dark.footer : Color.light.footer
       }`}
     >

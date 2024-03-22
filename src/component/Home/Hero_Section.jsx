@@ -1,47 +1,56 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const images = [
-  "../src/assets/images/collegeBackground.jpg",
-  "../src/assets/images/collegeBackground2.jpg",
-  "../src/assets/images/collegeBackground3.jpg",
-]; // Placeholder URLs, replace with actual image URLs
 
 const HeroSection = () => {
   const navigate = useNavigate();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds (adjust as needed)
-
-    return () => clearInterval(interval);
-  }, []);
+  const [isMoving, setIsMoving] = useState(true); // Set to true to start animation
+  const images = [
+    "../src/assets/images/hero-bg.png",
+    "../src/assets/images/hero-bg2.png",
+    "../src/assets/images/manWomen.png",
+    "../src/assets/images/search.png",
+    "../src/assets/images/search2.png",
+    "../src/assets/images/landingpage.png",
+    "../src/assets/images/navigation.png",
+    "../src/assets/images/onlinePresentation.png",
+  ];
 
   function handleRoute() {
     navigate(`/collegelist/india-colleges`);
   }
 
   return (
-    <div
-      className="relative bg-cover bg-center min-h-[400px] lg:min-h-[60vh] mt-[70px] flex justify-center items-center transition-opacity duration-1000"
-      style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
-    >
-      <div className="absolute inset-0 bg-black opacity-60"></div>
-      <div className="text-white text-center p-8 relative z-10">
-        <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-          Welcome to My College
-        </h1>
-        <p className="text-lg lg:text-xl mb-8">
-          Discover a world of knowledge and opportunities.
-        </p>
-        <button
-          className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold transition duration-300 ease-in-out transform hover:scale-105"
-          onClick={handleRoute}
-        >
-          Explore Colleges & Universities
-        </button>
+    <div className="relative min-h-[900px] lg:min-h-[90vh] mt-[80px] flex justify-center items-center transition-opacity duration-1000">
+      <div className="absolute max-w-[1200px] mx-auto inset-0 flex flex-col lg:flex-row items-center">
+        {/* Text on the left */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center text-white p-8">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-center lg:text-left">
+            Meet colleges. <br className="lg:hidden" />
+            Get accepted.
+          </h1>
+          <p className="text-xl lg:text-2xl mb-8 text-center lg:text-left">
+            Join MYCollege to unlock early admissions offers
+            <br />and scholarships from top schools.
+          </p>
+          <button
+            className="relative bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105 overflow-hidden"
+            onClick={handleRoute}
+          >
+            Explore Colleges & Universities
+            <span className="absolute top-0 left-0 w-full h-full bg-black opacity-25 animate-shine"></span>
+          </button>
+        </div>
+
+        {/* Image on the right */}
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+          <div className="w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] overflow-hidden mt-2 ml-10">
+            <img
+              src={images[6]}
+              alt="Presentation"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

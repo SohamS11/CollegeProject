@@ -3,7 +3,7 @@ import { TopCitiesData } from "../../Data/TopCitiesData";
 
 const TopCities = () => {
   return (
-    <div className="w-full lg:w-[1300px] overflow-hidden mx-auto">
+    <div className="w-full lg:w-[1300px] overflow-hidden mx-auto mt-10">
       <div className="  px-4">
         <h1 className="font-semibold text-3xl mt-3"> Top Cities </h1>
         <div className="flex overflow-x-auto mt-0">

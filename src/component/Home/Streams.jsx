@@ -3,7 +3,7 @@ import { StreamsData } from "../../Data/StreamsData";
 
 const Streams = () => {
   return (
-    <div className="lg:w-[1300px] my-4 px-2 flex flex-col mx-auto">
+    <div className="lg:w-[1300px] my-4 px-2 flex flex-col mx-auto mt-20">
       <div className="text-left w-full max-w-screen-lg mb-4">
         <div>
           <h1 className="text-3xl font-semibold m-2">Explore your Future</h1>

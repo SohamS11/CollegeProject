@@ -30,7 +30,7 @@ const TopStreamsCollege = () => {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-20">
       <div className="w-[1300px]">
         <h1 className="font-semibold text-3xl mt-3 px-4">Top College</h1>
         <p className="ml-5 mb-4">Choose your Dream College</p>

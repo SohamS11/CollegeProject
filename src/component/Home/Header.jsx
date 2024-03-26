@@ -6,6 +6,7 @@ import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import Color from "../../Theme/Color";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -52,10 +53,6 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleModeToggle = () => {
-    toggleDarkMode(!darkMode);
-  };
-
   const handleCategorySelect = (category) => {
     setIsHovered(false);
     navigate(`/newz/${category}`);
@@ -70,7 +67,11 @@ const Header = () => {
   };
 
   return (
-    <header className={`flex text-white h-[90px] bg-blue-900 mx-auto justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? `h-[50px] bg-gray-900 shadow-md` : `h-[70px] bg-gray-900 shadow-md`}`}>
+    <header className={`flex h-[90px] mx-auto justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled
+        ? `h-[50px]  ${darkMode ? Color.dark.header : Color.light.header}`
+        : `h-[70px]  ${darkMode ? Color.dark.header : Color.light.header}`
+    }`}>
       <div className="w-full max-w-[1200px]">
         <div className="flex justify-between items-center px-4 md:px-0">
           <div className="flex justify-end ">
@@ -144,7 +145,7 @@ const Header = () => {
         </div>
       )}
       <div className="flex items-center">
-        <button onClick={handleModeToggle} className={`mx-3 ${darkMode ? "text-white" : "text-black"}`}>
+        <button onClick={toggleDarkMode} className={`mx-3 ${darkMode ? "text-white" : "text-black"}`}>
           {darkMode ? <CiLight size={30} /> : <MdDarkMode size={30} />}
         </button>
       </div>

@@ -23,7 +23,7 @@ const HeroSection = () => {
     <div className="relative min-h-[900px] lg:min-h-[90vh] mt-[80px] flex justify-center items-center transition-opacity duration-1000">
       <div className="absolute max-w-[1200px] mx-auto inset-0 flex flex-col lg:flex-row items-center">
        
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center text-black p-8">
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center  p-8">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-center lg:text-left">
             Meet colleges. <br className="lg:hidden" />
             Get accepted.
@@ -33,11 +33,11 @@ const HeroSection = () => {
             <br />and scholarships from top schools.
           </p>
           <button
-            className="relative bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105 overflow-hidden"
+            className="relative bg-black  px-6 py-3 rounded-lg hover:bg-gray-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105 overflow-hidden"
             onClick={handleRoute}
           >
             Explore Colleges & Universities
-            <span className="absolute top-0 left-0 w-full h-full bg-black opacity-25 animate-shine"></span>
+            <span className="absolute top-0 left-0 w-full h-full opacity-25 animate-shine"></span>
           </button>
         </div>
 

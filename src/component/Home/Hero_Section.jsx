@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useThemeContext } from "../../ContextApi/ThemeContext";
+import Color from "../../Theme/Color";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const HeroSection = () => {
     "../src/assets/images/navigation.png",
     "../src/assets/images/onlinePresentation.png",
   ];
+  const { toggleDarkMode, darkMode } = useThemeContext();
 
   function handleRoute() {
     navigate(`/collegelist/india-colleges`);
@@ -33,7 +36,11 @@ const HeroSection = () => {
             <br />and scholarships from top schools.
           </p>
           <button
-            className="relative bg-black  px-6 py-3 rounded-lg hover:bg-gray-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105 overflow-hidden"
+            className={
+              `${darkMode ? 'text-white': 'text-black bg-blue-300'}
+              relative bg-black  px-6 py-3 rounded-lg hover:bg-gray-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105 overflow-hidden
+              `
+            }
             onClick={handleRoute}
           >
             Explore Colleges & Universities

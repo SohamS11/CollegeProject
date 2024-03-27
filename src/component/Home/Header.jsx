@@ -17,10 +17,15 @@ const Header = () => {
   const { toggleDarkMode, darkMode } = useThemeContext();
   const [isHovered, setIsHovered] = useState(false);
 
+  
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
-      setIsScrolled(scrollTop > 70);
+      if (scrollTop > 70) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     const handleResize = () => {
@@ -30,6 +35,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
+    // Initial check for mobile screen
     handleResize();
 
     return () => {

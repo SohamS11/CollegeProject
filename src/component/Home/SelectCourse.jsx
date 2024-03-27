@@ -27,7 +27,7 @@ const SelectCourse = () => {
 const ExternalImages = () => {
   // Define your logic for external images here
   return (
-    <div className="w-full flex gap-3 overflow-x-auto">
+    <div className="w-full flex gap-3 overflow-x-hidden">
       <div className="flex-shrink-0 w-[350px] h-[350px]">
         <img src="../src/assets/icons/college.png" alt="Image 1" />
       </div>

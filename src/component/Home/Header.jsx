@@ -17,10 +17,15 @@ const Header = () => {
   const { toggleDarkMode, darkMode } = useThemeContext();
   const [isHovered, setIsHovered] = useState(false);
 
+  
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
-      setIsScrolled(scrollTop > 70);
+      if (scrollTop > 70) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     const handleResize = () => {
@@ -30,6 +35,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
+    // Initial check for mobile screen
     handleResize();
 
     return () => {
@@ -67,7 +73,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`flex h-[90px] mx-auto justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`flex h-[70px] mx-auto justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled
         ? `h-[50px]  ${darkMode ? Color.dark.header : Color.light.header}`
         : `h-[70px]  ${darkMode ? Color.dark.header : Color.light.header}`
@@ -76,7 +82,7 @@ const Header = () => {
         <div className="flex justify-between items-center px-4 md:px-0">
           <div className="flex justify-end ">
             <NavLink to="/" className={`flex items-center`}>
-              <img src="../src/assets/images/MYCollege_transparent.png" alt="MyCollege Logo" style={{ width: "300px", height: "300px" }} />
+              <img src="../src/assets/images/MYCollege_transparent.png" alt="MyCollege Logo" style={{ width: "250px", height: "250px" }} />
             </NavLink>
           </div>
           {isMobile && isMenuOpen && (

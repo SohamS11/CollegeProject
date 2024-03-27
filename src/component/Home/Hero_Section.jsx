@@ -32,8 +32,8 @@ const HeroSection = () => {
             Get accepted.
           </h1>
           <p className="text-xl lg:text-2xl mb-8 text-center lg:text-left">
-            Join MYCollege to unlock early admissions offers
-            <br />and scholarships from top schools.
+            Join MYCollege to unlock Your future opportunity
+            <br />and scholarships from top Colleges.
           </p>
           <button
             className={

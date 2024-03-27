@@ -1,79 +1,79 @@
 const CourseData = [
   {
-    text: "MBA/PGDM",
-    link: "mba-colleges",
+    text: "MBA",
+    link: "courses%2Fmaster-of-business-administration-mba",
   },
   {
-    text: "BE/B.Tech",
-    link: "btech-colleges",
+    text: "B.Tech",
+    link: "courses%2Fbachelor-of-technology-btech-computer-science-and-engineering",
   },
   {
     text: "B.Sc",
-    link: "bsc-colleges",
+    link: "courses%2Fbachelor-of-science-bsc",
   },
   {
     text: "B.Com",
-    link: "bcom-colleges",
+    link: "courses%2Fbachelor-of-commerce-bcom",
   },
   {
     text: "BA",
-    link: "ba-colleges",
+    link: "courses%2Fbachelor-of-arts-ba",
   },
   {
-    text: "BBA/BBM",
-    link: "bba-colleges",
+    text: "BBA",
+    link: "courses%2Fbachelor-of-business-administration-bba%2Fonline-courses",
   },
   {
     text: "M.Sc",
-    link: "msc-colleges",
+    link: "courses%2Fmaster-of-science-msc",
   },
   {
-    text: "ME/M.Tech",
-    link: "mtech-colleges",
+    text: "M.Tech",
+    link: "courses%2Fmaster-of-technology-mtech",
   },
   {
     text: "BCA",
-    link: "bca-colleges",
+    link: "courses%2Fbachelor-of-computer-applications-bca",
   },
   {
     text: "MA",
-    link: "ma-colleges",
+    link: "courses%2Fmaster-of-arts-ma",
   },
   {
     text: "M.Com",
-    link: "mcom-colleges",
+    link: "courses%2Fmaster-of-commerce-mcom",
   },
   {
     text: "MCA",
-    link: "mca-colleges",
+    link: "courses%2Fmaster-of-computer-applications-mca",
   },
   {
     text: "B.Pharm",
-    link: " bpharm-colleges",
+    link: " courses%2Fbachelor-of-pharmacy-bpharma",
   },
   {
     text: "B.Ed",
-    link: "bed-colleges",
+    link: "courses%2Fbachelor-of-education-bed",
   },
   {
     text: "B.Sc (Nursing)",
-    link: "bsc-nursing-colleges",
+    link: "courses%2Fbachelor-of-science-bsc-nursing",
   },
   {
     text: "LLB",
-    link: "llb-colleges",
+    link: "courses%2Fbachelor-of-laws-llb",
   },
   {
     text: "BHM",
-    link: "bhm-colleges",
+    link: "courses%2Fbachelor-of-hospital-management-bhm",
   },
   {
     text: "LLM",
-    link: "llm-colleges",
+    link: "courses%2Fmaster-of-laws-llm",
   },
   {
     text: "MBBS",
-    link: "mbbs-colleges",
+    link: "courses%2Fbachelor-of-medicine-bachelor-of-surgery-mbbs",
   },
 ];
 

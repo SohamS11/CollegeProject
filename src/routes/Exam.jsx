@@ -39,6 +39,9 @@ const Exam = () => {
       {!loading && !error && (
         <div className={`${darkMode ? "Dark" : "Light"} min-h-screen`}>
           <div className="container mx-auto px-4 py-8 lg:w-[1300px] md:w-[786px] sm:w-[640px]">
+            <div>
+              <h1 className=" font-bold flex items-center justify-center">{examData ? examData.breadCrumbs[1]?.name : null}</h1>
+            </div>
             <div
               dangerouslySetInnerHTML={{
                 __html: sanitizeHTML(examData?.description),
@@ -51,18 +54,32 @@ const Exam = () => {
     </div>
   );
 };
-
 const sanitizeHTML = (htmlString) => {
   // Remove all <a> tags with href containing "zollege.in"
   htmlString = htmlString.replace(
     /<a[^>]*href\s*=\s*["'][^"']*zollege\.in[^"']*["'][^>]*>/gi,
     ""
   );
+
+  // Remove all <iframe> tags
   htmlString = htmlString.replace(/<iframe.*?<\/iframe>/gi, "");
+
+  // Remove specific inline styles
   htmlString = htmlString.replace(
-    /style="background: #eee; border: 1px solid #ccc; padding: 5px 10px;"/gi,
-    'style="background:rgb(31, 41, 55); border: 1px solid #ccc; padding: 5px 10px;"'
+    /style\s*=\s*(['"])(?:(?!\1|background|border|padding|text-align).)*?\1/gi,
+    ""
   );
+
+  // Adjust specific inline styles
+  htmlString = htmlString.replace(
+    /style\s*=\s*(['"])(?:(?!\1|background|border|padding|text-align).)*background\s*:\s*#[a-fA-F0-9]+;\s*(?:(?!\1).)*?\1/gi,
+    ""
+  );
+  htmlString = htmlString.replace(
+    /style\s*=\s*(['"])(?:(?!\1|background|border|padding|text-align).)*background\s*:\s*rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\);\s*(?:(?!\1).)*?\1/gi,
+    ""
+  );
+
   return htmlString;
 };
 

@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
       className={`${darkMode ? Color.dark.mainbg : Color.light.mainbg} h-full `}
     >
       <Header />
-      <div className="py-6">{children}</div>
+      <div className="pt-6">{children}</div>
     </div>
   );
 };

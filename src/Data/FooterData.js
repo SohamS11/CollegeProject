@@ -29,7 +29,7 @@ const FooterData = [
     title: "Top Exam",
     id: "top-exam",
     subMenu: [
-      { name: "CAT", id: "cat" },
+      { name: "CAT", id: "exams/cat" },
       { name: "GATE", id: "exams/gate" },
       { name: "JEE-MAIN", id: "exams/jee-main" },
       { name: "NEET", id: "exams/neet" },

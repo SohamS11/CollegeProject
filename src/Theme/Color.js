@@ -15,7 +15,7 @@ const Color = {
     card: "bg-gray-100 text-gray-800", // Light card background with dark text
     card2: "bg-blue-200", // Light secondary card background with blue
     text: "text-gray-800", // Dark text color
-    hoverbg: "hover:bg-blue-300", // Light hover background with blue
+    hoverbg: "hover:bg-blue-500", // Light hover background with blue
     filterbox: "bg-white", // Light filter box
     header: "bg-blue-300 text-gray-800", // Light header background with dark text and blue background
   },

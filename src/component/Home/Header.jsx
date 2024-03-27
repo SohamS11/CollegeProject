@@ -67,52 +67,110 @@ const Header = () => {
   };
 
   return (
-    <header className={`flex h-[90px] mx-auto justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled
-        ? `h-[50px]  ${darkMode ? Color.dark.header : Color.light.header}`
-        : `h-[70px]  ${darkMode ? Color.dark.header : Color.light.header}`
-    }`}>
+    <header
+      className={`flex h-[90px] mx-auto justify-center mb-10 items-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? `h-[50px]  ${darkMode ? Color.dark.header : Color.light.header}`
+          : `h-[70px]  ${darkMode ? Color.dark.header : Color.light.header}`
+      }`}
+    >
       <div className="w-full max-w-[1200px]">
         <div className="flex justify-between items-center px-4 md:px-0">
           <div className="flex justify-end ">
             <NavLink to="/" className={`flex items-center`}>
-              <img src="../src/assets/images/MYCollege_transparent.png" alt="MyCollege Logo" style={{ width: "300px", height: "300px" }} />
+              <img
+                src="../src/assets/images/MYCollege_transparent.png"
+                alt="MyCollege Logo"
+                style={{ width: "300px", height: "300px" }}
+              />
             </NavLink>
           </div>
           {isMobile && isMenuOpen && (
-            <div className="fixed top-0 left-0 right-0 bottom-0 opacity-50" onClick={handleMenuToggle}></div>
+            <div
+              className="fixed top-0 left-0 right-0 bottom-0 opacity-50"
+              onClick={handleMenuToggle}
+            ></div>
           )}
           {!isMobile && <SearchBox />}
           {isMobile && (
-            <div className={`flex gap-2 p-2 ${darkMode ? "text-white" : "text-black bg-blue-500"} md:bg-green-500 items-center justify-center px-3 mt-2 border rounded-full cursor-pointer`} onClick={clickHandler}>
+            <div
+              className={`flex gap-2 p-2 ${
+                darkMode ? "text-white" : "text-black bg-blue-500"
+              } md:bg-green-500 items-center justify-center px-3 mt-2 border rounded-full cursor-pointer`}
+              onClick={clickHandler}
+            >
               <IoSearchOutline />
               <p className=""> Search </p>
             </div>
           )}
           {isMobile && (
-            <div className={`mx-3 flex justify-center items-center ${darkMode ? "text-white" : "text-black"}`}>
+            <div
+              className={`mx-3 flex justify-center items-center ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
               <GiHamburgerMenu className="h-5 w-8" onClick={handleMenuToggle} />
             </div>
           )}
           {!isMobile && (
             <nav className="flex items-center">
-              <ul className={`flex gap-x-6 font-mono font-medium text-xl items-center justify-center ${darkMode ? "text-white" : "text-black"}`}>
-                <li>
+              <ul
+                className={`flex gap-x-3 font-mono font-medium text-xl items-center justify-center ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+              >
+                <li className={`px-2 py-1 rounded-lg ${
+                            darkMode ? Color.dark.hoverbg : Color.light.hoverbg
+                          }`}>
                   <button onClick={() => handleNavigation("/")}>Home</button>
                 </li>
-                <li>
-                  <button onClick={() => handleNavigation("/about")}>About</button>
+                <li className={` px-2 py-1 rounded-lg ${
+                            darkMode ? Color.dark.hoverbg : Color.light.hoverbg
+                          }`}>
+                  <button onClick={() => handleNavigation("/about")}>
+                    About
+                  </button>
+                </li>
+                <li className={` px-2 py-1 rounded-lg ${
+                            darkMode ? Color.dark.hoverbg : Color.light.hoverbg
+                          }`}>
+                  <button onClick={() => handleNavigation("/contact")}>
+                    Contact
+                  </button>
                 </li>
                 <li>
-                  <button onClick={() => handleNavigation("/contact")}>Contact</button>
-                </li>
-                <li>
-                  <div className="relative" onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
-                    <button className={`${darkMode ? "text-white" : "text-black"} hover:bg-gray-200 px-3 py-1 rounded-lg`}>News</button>
+                  <div
+                    className="relative"
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <button
+                      className={`text-${
+                        darkMode ? "white" : "black"
+                      }  px-2 py-1 rounded-lg   ${
+                        darkMode ? Color.dark.hoverbg : Color.light.hoverbg
+                      }`}
+                    >
+                      News
+                    </button>
                     {isHovered && (
-                      <div className="absolute top-full w-32 py-2 shadow-lg rounded">
-                        <button onClick={() => handleCategorySelect("technology")} className="block px-4 py-2 hover:bg-gray-100">Technology</button>
-                        <button onClick={() => handleCategorySelect("sport")} className="block px-4 py-2 hover:bg-gray-100">Sport</button>
+                      <div className="absolute top-full w-32  shadow-lg rounded">
+                        <button
+                          onClick={() => handleCategorySelect("technology")}
+                          className={`block px-4 py-2 w-full rounded-lg ${
+                            darkMode ? Color.dark.hoverbg : Color.light.hoverbg
+                          }`}
+                        >
+                          Technology
+                        </button>
+                        <button
+                          onClick={() => handleCategorySelect("sport")}
+                          className={`block px-4 py-2 w-full rounded-lg ${
+                            darkMode ? Color.dark.hoverbg : Color.light.hoverbg
+                          }`}
+                        >
+                          Sport
+                        </button>
                       </div>
                     )}
                   </div>
@@ -124,28 +182,48 @@ const Header = () => {
       </div>
 
       {showBurger && (
-        <div className={`h-screen w-full max-w-[150px] fixed top-0 right-0 ${darkMode ? "text-white" : "text-black"} ${darkMode ? "bg-gray-900" : "bg-white"} flex flex-col`}>
-          <GiCrossMark onClick={handleMenuToggle} className="absolute top-2 right-2" />
+        <div
+          className={`h-screen w-full max-w-[150px] fixed top-0 right-0  ${
+            darkMode ? Color.dark.header : Color.light.header
+          } flex flex-col`}
+        >
+          <GiCrossMark
+            onClick={handleMenuToggle}
+            className="absolute top-2 right-2"
+          />
           <nav className="mt-5 ml-5">
-            <ul className={`flex flex-col space-y-2 ${darkMode ? "text-white" : "text-black"}`}>
+            <ul
+              className={`flex flex-col space-y-2 ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
               <li>
                 <button onClick={() => handleNavigation("/")}>Home</button>
               </li>
               <li>
-                <button onClick={() => handleNavigation("/about")}>About</button>
+                <button onClick={() => handleNavigation("/about")}>
+                  About
+                </button>
               </li>
               <li>
-                <button onClick={() => handleNavigation("/contact")}>Contact</button>
+                <button onClick={() => handleNavigation("/contact")}>
+                  Contact
+                </button>
               </li>
               <li>
-                <button onClick={() => handleNavigation("/department")}>Department</button>
+                <button onClick={() => handleNavigation("/department")}>
+                  Department
+                </button>
               </li>
             </ul>
           </nav>
         </div>
       )}
       <div className="flex items-center">
-        <button onClick={toggleDarkMode} className={`mx-3 ${darkMode ? "text-white" : "text-black"}`}>
+        <button
+          onClick={toggleDarkMode}
+          className={`mx-3 ${darkMode ? "text-white" : "text-black"}`}
+        >
           {darkMode ? <CiLight size={30} /> : <MdDarkMode size={30} />}
         </button>
       </div>

@@ -10,7 +10,7 @@ import {
   CollegeLists,
   Login,
   Newz,
-  FetchNewz
+  FetchNewz,
 } from "./Routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
@@ -22,7 +22,11 @@ import ThreeDCardDemo from '../src/components/3d-Comp.tsx'
 const Layout = ({ children }) => {
   const { darkMode } = useThemeContext();
   return (
-    <div className={darkMode ? Color.dark.mainbg : Color.light.mainbg}>
+    <div
+      className={`${
+        darkMode ? Color.dark.mainbg : Color.light.mainbg
+      } h-full `}
+    >
       <Header />
       {children}
     </div>
@@ -61,7 +65,7 @@ const App = () => {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-      
+
         <Route
           path="/newz/:category" // Update the route to accept category parameter
           element={
@@ -78,7 +82,7 @@ const App = () => {
             </Layout>
           }
         />
-    
+
         <Route path="/search" element={<Search />} />
         <Route
           path="*"

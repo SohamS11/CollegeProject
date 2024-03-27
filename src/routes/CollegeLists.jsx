@@ -86,7 +86,7 @@ const CollegeList = () => {
 
   return (
     <div
-      className={`container mx-auto mt-16 max-w-screen-xl gap-8 px-4 flex ${
+      className={`container mx-auto mt-20 max-w-screen-xl gap-8 px-4 flex ${
         darkMode ? Color.dark.mainbg : Color.light.mainbg
       }`}
     >

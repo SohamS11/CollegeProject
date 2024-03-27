@@ -17,18 +17,16 @@ import Exam from "./Routes/Exam";
 import Course from "./Routes/Course";
 import { useThemeContext } from "./ContextApi/ThemeContext";
 import Color from "./Theme/Color";
-import ThreeDCardDemo from '../src/components/3d-Comp.tsx'
+import ThreeDCardDemo from "../src/components/3d-Comp.tsx";
 
 const Layout = ({ children }) => {
   const { darkMode } = useThemeContext();
   return (
     <div
-      className={`${
-        darkMode ? Color.dark.mainbg : Color.light.mainbg
-      } h-full `}
+      className={`${darkMode ? Color.dark.mainbg : Color.light.mainbg} h-full `}
     >
       <Header />
-      {children}
+      <div className="py-6">{children}</div>
     </div>
   );
 };
@@ -41,9 +39,7 @@ const App = () => {
           path="/"
           element={
             <Layout>
-            
               <Home />
-             
             </Layout>
           }
         />

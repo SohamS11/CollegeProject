@@ -37,7 +37,7 @@ const HeroSection = () => {
           </p>
           <button
             className={
-              `${darkMode ? 'text-white': 'text-black bg-blue-300'}
+              `${darkMode ? 'text-white': 'text-black bg-gradient-to-r from-blue-500 to-gray-200'}
               relative bg-black  px-6 py-3 rounded-lg hover:bg-gray-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105 overflow-hidden
               `
             }

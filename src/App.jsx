@@ -8,7 +8,7 @@ import {
   Search,
   CollegeLists,
   FetchNewz,
-} from "./Routes/ExportRoutes";
+} from "./routes/ExportRoutes";
 import CollegeDetail from "./Routes/Collegedetails";
 import Exam from "./Routes/Exam";
 import Course from "./Routes/Course";

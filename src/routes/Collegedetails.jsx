@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Apiurl } from "../Data/ApiData";
 import { MdLocationOn } from "react-icons/md";
-import Courses from "../Component/Collegedetails/Courses";
+import Courses from "../component/Collegedetails/Courses";
 import Spinner from "../component/Spinner";
 import { useThemeContext } from "../ContextApi/ThemeContext";
 import Color from "../Theme/Color";

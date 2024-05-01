@@ -1,6 +1,6 @@
 import HeroSection from "../component/Home/Hero_Section";
 import FeaturesSection from "../component/Home/FeaturesSection";
-import Footer from "../Component/Home/Footer";
+import Footer from "../component/Home/Footer";
 import TopCities from "../component/Home/TopCities";
 import Streams from "../Component/Home/Streams";
 import TopStreamsCollege from "../Component/Home/TopStreamsCollege";

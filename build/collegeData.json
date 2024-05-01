@@ -1,0 +1,51 @@
+{
+    "college": {
+      "name": "Sample College",
+      "location": "Cityville",
+      "departments": [
+        {
+          "id": 1,
+          "name": "Computer Science",
+          "courses": [
+            {
+              "id": 101,
+              "name": "Introduction to Programming"
+            },
+            {
+              "id": 102,
+              "name": "Data Structures"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Business Administration",
+          "courses": [
+            {
+              "id": 201,
+              "name": "Marketing 101"
+            },
+            {
+              "id": 202,
+              "name": "Financial Accounting"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Commerce",
+          "courses": [
+            {
+              "id": 301,
+              "name": "Accounting"
+            },
+            {
+              "id": 302,
+              "name": "economics"
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

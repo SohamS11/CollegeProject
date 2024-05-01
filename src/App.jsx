@@ -9,9 +9,9 @@ import {
   CollegeLists,
   FetchNewz,
 } from "./routes/ExportRoutes";
-import CollegeDetail from "./Routes/Collegedetails";
-import Exam from "./Routes/Exam";
-import Course from "./Routes/Course";
+import CollegeDetail from "./routes/Collegedetails";
+import Exam from "./routes/Exam";
+import Course from "./routes/Course";
 import { useThemeContext } from "./ContextApi/ThemeContext";
 import Color from "./Theme/Color";
 

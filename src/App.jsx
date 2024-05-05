@@ -8,10 +8,10 @@ import {
   Search,
   CollegeLists,
   FetchNewz,
-} from "./Routes/ExportRoutes";
-import CollegeDetail from "./Routes/Collegedetails";
-import Exam from "./Routes/Exam";
-import Course from "./Routes/Course";
+} from "./routes/ExportRoutes";
+import CollegeDetail from "./routes/Collegedetails";
+import Exam from "./routes/Exam";
+import Course from "./routes/Course";
 import { useThemeContext } from "./ContextApi/ThemeContext";
 import Color from "./Theme/Color";
 

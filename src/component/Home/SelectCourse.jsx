@@ -3,6 +3,8 @@ import { BsDot } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
 import Color from "../../Theme/Color";
+import collegepng from "../../assets/icons/college.png";
+import exampng from "../../assets/icons/exam.png";
 
 const SelectCourse = () => {
   const { darkMode } = useThemeContext();
@@ -29,10 +31,10 @@ const ExternalImages = () => {
   return (
     <div className="w-full flex gap-3 overflow-x-hidden">
       <div className="flex-shrink-0 w-[350px] h-[350px]">
-        <img src="../src/assets/icons/college.png" alt="Image 1" />
+        <img src={collegepng} alt="Image 1" />
       </div>
       <div className="flex-shrink-0 w-[350px] h-[350px]">
-        <img src="../src/assets/icons/exam.png" alt="Image 2" />
+        <img src={exampng} alt="Image 2" />
       </div>
       {/* Add more images as needed */}
     </div>

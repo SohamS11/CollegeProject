@@ -1,7 +1,10 @@
-import React from "react";
 import { useThemeContext } from "../../ContextApi/ThemeContext";
 import styled, { keyframes } from "styled-components";
 import Color from "../../Theme/Color";
+import collegepng from "../../assets/icons/college.png";
+import exampng from "../../assets/icons/exam.png";
+import newspng from "../../assets/icons/news.png";
+import onlinePresentationpng from "../../assets/images/onlinePresentation.png";
 
 const FeaturesSection = () => {
   const { darkMode } = useThemeContext();
@@ -10,22 +13,22 @@ const FeaturesSection = () => {
     {
       title: "College",
       description: "Discover the best colleges for you.",
-      image: "../src/assets/icons/college.png",
+      image:  collegepng ,
     },
     {
       title: "Exams",
       description: "Be ready before your exams.",
-      image: "../src/assets/icons/exam.png",
+      image: exampng ,
     },
     {
       title: "News",
       description: "Stay updated with the latest news.",
-      image: "../src/assets/icons/news.png",
+      image:  newspng ,
     },
     {
       title: "Internships",
       description: "Find exciting internship opportunities.",
-      image: "../src/assets/images/onlinePresentation.png",
+      image:  onlinePresentationpng ,
     },
   ];
 
@@ -68,8 +71,12 @@ const FeaturesSection = () => {
     justify-content: center;
     padding: 1.5rem;
     margin: 1rem;
-    background-color: ${darkMode ? Color.dark.card : Color.light.card}; // Adjust card color based on darkMode
-    color: ${darkMode ? Color.dark.text : Color.light.text}; // Adjust text color based on darkMode
+    background-color: ${darkMode
+      ? Color.dark.card
+      : Color.light.card}; // Adjust card color based on darkMode
+    color: ${darkMode
+      ? Color.dark.text
+      : Color.light.text}; // Adjust text color based on darkMode
     border-radius: 0.75rem;
     border: 1px solid ${darkMode ? Color.dark.card2 : Color.light.card2}; // Add border
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -106,9 +113,7 @@ const FeaturesSection = () => {
   return (
     <Container>
       <CenteredContainer>
-        <h2 className="text-3xl lg:text-4xl font-bold mb-8">
-          Key Features
-        </h2>
+        <h2 className="text-3xl lg:text-4xl font-bold mb-8">Key Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featureData.map((feature, index) => (
             <FeatureCard key={index}>

@@ -7,6 +7,7 @@ import { useThemeContext } from "../../ContextApi/ThemeContext";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import Color from "../../Theme/Color";
+import MYCollege_transparent from '../../assets/images/MYCollege_transparent.png'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const Header = () => {
           <div className="flex justify-end ">
             <NavLink to="/" className={`flex items-center`}>
               <img
-                src="../src/assets/images/MYCollege_transparent.png"
+                src={MYCollege_transparent}
                 alt="MyCollege Logo"
                 style={{ width: "300px", height: "300px" }}
               />
